@@ -22,3 +22,8 @@
     <Footer />
   </div>
 </template>
+<script lang="ts" setup>
+import { fetchProducts } from '~/api/products'
+const products = fetchProducts()
+console.log(products)
+</script>
