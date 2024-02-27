@@ -597,6 +597,62 @@ const productsResponse = {
   ]
 }
 
+const categoryResponse = {
+  "count": 20,
+    "next": "https://example.com/api/products?page=2",
+    "previous": null,
+    "results": [
+      {
+        "name": "Category 1",
+        "description": "Category 1 description",
+        "store": 1,
+        "created_at": "2022-01-01T00:00:00Z",
+        "updated_at": "2022-01-01T00:00:00Z",
+        "image": "https://picsum.photos/id/5/5000/3334"
+      },
+      {
+        "name": "Category 2",
+        "description": "Category 2 description",
+        "store": 1,
+        "created_at": "2022-01-01T00:00:00Z",
+        "updated_at": "2022-01-01T00:00:00Z",
+        "image": "https://picsum.photos/id/5/5000/3334"
+      },
+      {
+        "name": "Category 3",
+        "description": "Category 3 description",
+        "store": 1,
+        "created_at": "2022-01-01T00:00:00Z",
+        "updated_at": "2022-01-01T00:00:00Z",
+        "image": "https://picsum.photos/id/5/5000/3334"
+      },
+      {
+        "name": "Category 1",
+        "description": "Category 1 description",
+        "store": 1,
+        "created_at": "2022-01-01T00:00:00Z",
+        "updated_at": "2022-01-01T00:00:00Z",
+        "image": "https://picsum.photos/id/5/5000/3334"
+      },
+      {
+        "name": "Category 2",
+        "description": "Category 2 description",
+        "store": 1,
+        "created_at": "2022-01-01T00:00:00Z",
+        "updated_at": "2022-01-01T00:00:00Z",
+        "image": "https://picsum.photos/id/5/5000/3334"
+      },
+      {
+        "name": "Category 3",
+        "description": "Category 3 description",
+        "store": 1,
+        "created_at": "2022-01-01T00:00:00Z",
+        "updated_at": "2022-01-01T00:00:00Z",
+        "image": "https://picsum.photos/id/5/5000/3334"
+      }
+    ]
+  }
+
 function fakeAsyncEndpoint(data: any, delay: number = 1000): Promise<Response> {
   return new Promise((resolve) => {
     setTimeout(() => {
