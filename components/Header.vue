@@ -6,7 +6,7 @@
     </router-link>
 
     <!-- Search Bar -->
-    <div class="search-bar">
+    <div class="search-bar w-full">
       <SfInput
         placeholder="Search products..."
         icon="search"
@@ -14,8 +14,7 @@
       />
     </div>
 
-    <!-- Country Selector -->
-    <!-- <SfCountrySelector class="country-selector" /> -->
+    <LanguageSelector />
 
     <!-- Currency Selector -->
     <!-- <SfCurrencySelector class="currency-selector" /> -->
