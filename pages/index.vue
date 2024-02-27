@@ -1,25 +1,17 @@
 <template>
-  <div class="index-page">
-    <!-- Header -->
-    <Header />
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Promotional Banner -->
+    <PromotionalBanner />
 
-    <!-- Main Content -->
-    <div class="main-content">
-      <!-- Promotional Banner -->
-      <PromotionalBanner />
+    <!-- Featured Products -->
+    <FeaturedProducts />
 
-      <!-- Featured Products -->
-      <FeaturedProducts />
+    <!-- Categories -->
+    <Categories />
 
-      <!-- Categories -->
-      <Categories />
-
-      <!-- Testimonials -->
-      <Testimonials />
-    </div>
-
-    <!-- Footer -->
-    <Footer />
+    <!-- Testimonials -->
+    <Testimonials />
   </div>
 </template>
 <script lang="ts" setup>
