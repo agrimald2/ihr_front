@@ -23,7 +23,16 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { fetchProducts } from '~/api/products'
-const products = fetchProducts()
-console.log(products)
+import { fetchProducts } from '~/api/product/[productSlug]';
+const name = 'Market'
+const products = ref([]);
+
+onMounted(async () => {
+  try {
+    const data = await fetchProducts();
+    products.value = data.results
+  } catch (error) {
+    console.error('Failed to fetch products:', error);
+  }
+});
 </script>
