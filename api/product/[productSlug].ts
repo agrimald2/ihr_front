@@ -597,6 +597,38 @@ const productsResponse = {
   ]
 }
 
+const categoryResponse = {
+  "count": 20,
+    "next": "https://example.com/api/products?page=2",
+    "previous": null,
+    "results": [
+      {
+        "name": "Category 1",
+        "description": "Category 1 description",
+        "store": 1,
+        "created_at": "2022-01-01T00:00:00Z",
+        "updated_at": "2022-01-01T00:00:00Z",
+        "image": "https://picsum.photos/id/5/5000/3334"
+      },
+      {
+        "name": "Category 2",
+        "description": "Category 2 description",
+        "store": 1,
+        "created_at": "2022-01-01T00:00:00Z",
+        "updated_at": "2022-01-01T00:00:00Z",
+        "image": "https://picsum.photos/id/5/5000/3334"
+      },
+      {
+        "name": "Category 3",
+        "description": "Category 3 description",
+        "store": 1,
+        "created_at": "2022-01-01T00:00:00Z",
+        "updated_at": "2022-01-01T00:00:00Z",
+        "image": "https://picsum.photos/id/5/5000/3334"
+      }
+    ]
+  }
+
 function fakeAsyncEndpoint(data: any, delay: number = 1000): Promise<Response> {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -611,7 +643,7 @@ function fakeAsyncEndpoint(data: any, delay: number = 1000): Promise<Response> {
   });
 }
 
-export async function fetchProducts() {
+const fetchProducts = async () => {
   try {
     // const response = await fetch(`${BASE_URL}product`);
     // const response = await fetch('https://fakestoreapi.com/products');
@@ -625,3 +657,21 @@ export async function fetchProducts() {
     throw error;
   }
 }
+
+const fetchCategories = async () => {
+  try {
+    // const response = await fetch(`${BASE_URL}product`);
+    // const response = await fetch('https://fakestoreapi.com/products');
+    const response = await fakeAsyncEndpoint(categoryResponse, 1000)
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+    throw error;
+  }
+}
+
+export { fetchProducts, fetchCategories }
+
