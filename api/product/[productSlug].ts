@@ -667,7 +667,7 @@ function fakeAsyncEndpoint(data: any, delay: number = 1000): Promise<Response> {
   });
 }
 
-export async function fetchProducts() {
+const fetchProducts = async () => {
   try {
     // const response = await fetch(`${BASE_URL}product`);
     // const response = await fetch('https://fakestoreapi.com/products');
@@ -681,3 +681,21 @@ export async function fetchProducts() {
     throw error;
   }
 }
+
+const fetchCategories = async () => {
+  try {
+    // const response = await fetch(`${BASE_URL}product`);
+    // const response = await fetch('https://fakestoreapi.com/products');
+    const response = await fakeAsyncEndpoint(categoryResponse, 1000)
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+    throw error;
+  }
+}
+
+export { fetchProducts, fetchCategories }
+
