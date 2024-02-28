@@ -5,13 +5,11 @@
       <!-- Main Content -->
       <div class="main-content">
         <!-- Promotional Banner -->
+        <UiBanners/>
         <!-- <PromotionalBanner /> -->
-
-        <!-- Categories -->
-        <Categories :items="categories" />
-
-        <!-- Featured Products -->
-        <Products :items="products" />
+        <ProductSlider :items="products"/>
+      
+       
 
         <!-- Testimonials -->
         <Testimonials />
