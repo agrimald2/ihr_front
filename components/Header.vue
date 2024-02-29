@@ -211,28 +211,34 @@ import {
   SfIconMenu,
   SfInput,
   SfIconSearch,
-} from '@storefront-ui/vue';
-import { ref } from 'vue';
-import { onClickOutside } from '@vueuse/core';
+} from '@storefront-ui/vue'
+import { ref } from 'vue'
+import { onClickOutside } from '@vueuse/core'
 
-const { isOpen, toggle, close } = useDisclosure();
-const menuRef = ref();
-const drawerRef = ref();
+const { isOpen, toggle, close } = useDisclosure()
+const menuRef = ref()
+const drawerRef = ref()
+const router = useRouter()
 
 useTrapFocus(drawerRef, {
   activeState: isOpen,
   arrowKeysUpDown: true,
   initialFocus: 'container',
-});
+})
 onClickOutside(menuRef, () => {
-  close();
-});
+  close()
+})
 
-const inputValue = ref('');
+const inputValue = ref('')
 
 const search = () => {
-  alert(`Successfully found 10 results for ${inputValue.value}`);
-};
+  router.push({
+    path: '/search',
+    query: {
+      name: inputValue.value
+    }
+  })
+}
 
 const actionItems = [
   {
@@ -247,11 +253,11 @@ const actionItems = [
     ariaLabel: 'Log in',
     role: 'login',
   },
-];
+]
 const bannerDetails = {
   image: 'https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/watch.png',
   title: 'New in designer watches',
-};
+}
 
 const categoriesContent = [
   {
@@ -341,5 +347,5 @@ const categoriesContent = [
       },
     ],
   },
-];
+]
 </script>
