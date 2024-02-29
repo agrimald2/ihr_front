@@ -42,7 +42,10 @@
 <script lang="ts" setup>
 import { SfLink, SfRating, SfCounter, SfButton, SfIconShoppingCart } from '@storefront-ui/vue';
 const props = defineProps({
-  product : Object
+  product : {
+    type: Object,
+    default: {}
+  }
 })
 
 const NuxtLink = resolveComponent('NuxtLink');
