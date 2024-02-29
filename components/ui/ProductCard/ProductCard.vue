@@ -5,9 +5,10 @@
         <img
           :src="product.images[0]"
           :alt="product.brand"
-          class="block object-cover h-auto rounded-md aspect-square"
+          class="object-cover rounded-md aspect-square w-full h-full"
           width="190"
           height="190"
+          format="webp"
         />
       </SfLink>
     </div>
@@ -31,7 +32,7 @@
         <template #prefix>
           <SfIconShoppingCart size="sm" />
         </template>
-
+        add To Cart
       </SfButton>
     </div>
   </div>

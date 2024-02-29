@@ -1,11 +1,16 @@
 <template>
   <div class="w-full h-full">
-    <div v-if="isOpen" class="fixed w-screen h-screen inset-0 bg-neutral-500 bg-opacity-50 transition-opacity" />
+    <div
+      v-if="isOpen"
+      class="fixed w-screen h-screen inset-0 bg-neutral-500 bg-opacity-50 transition-opacity"
+    />
     <header
       ref="menuRef"
       class="flex flex-wrap md:flex-nowrap w-full py-2 md:py-5 border-0 bg-primary-700 border-neutral-200 md:relative md:h-20 md:z-10"
     >
-      <div class="flex items-center justify-start h-full max-w-[1536px] w-full px-4 md:px-10">
+      <div
+        class="flex items-center justify-start h-full max-w-[1536px] w-full px-4 md:px-10"
+      >
         <SfButton
           class="block md:hidden text-white font-body bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
           :aria-haspopup="true"
@@ -22,7 +27,12 @@
           class="flex shrink-0 ml-4 md:ml-0 text-white mr-auto md:mr-10 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
         >
           <picture>
-            <source srcset="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_white.svg" media="(min-width: 1024px)" />
+            <source
+              srcset="
+                https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_white.svg
+              "
+              media="(min-width: 1024px)"
+            />
             <img
               src="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_sign_white.svg"
               alt="Sf Logo"
@@ -41,7 +51,9 @@
           <template #suffix>
             <SfIconExpandMore class="hidden md:inline-flex" />
           </template>
-          <span class="hidden md:inline-flex whitespace-nowrap px-2">Categories</span>
+          <span class="hidden md:inline-flex whitespace-nowrap px-2"
+            >Categories</span
+          >
         </SfButton>
         <nav>
           <ul>
@@ -64,7 +76,11 @@
                   <div
                     class="sticky top-0 flex items-center justify-between py-2 px-4 bg-primary-700 md:hidden w-full max-w-[376px]"
                   >
-                    <div class="flex items-center typography-text-lg font-medium text-white">Browse products</div>
+                    <div
+                      class="flex items-center typography-text-lg font-medium text-white"
+                    >
+                      Browse products
+                    </div>
                     <SfButton
                       square
                       variant="tertiary"
@@ -105,8 +121,16 @@
                   <div
                     class="flex flex-col items-center justify-center bg-neutral-100 md:rounded-md border-neutral-300 overflow-hidden grow"
                   >
-                    <img :src="bannerDetails.image" :alt="bannerDetails.title" class="object-contain" />
-                    <p class="mb-4 mt-4 px-4 text-center typography-text-base font-medium">{{ bannerDetails.title }}</p>
+                    <img
+                      :src="bannerDetails.image"
+                      :alt="bannerDetails.title"
+                      class="object-contain"
+                    />
+                    <p
+                      class="mb-4 mt-4 px-4 text-center typography-text-base font-medium"
+                    >
+                      {{ bannerDetails.title }}
+                    </p>
                   </div>
                   <SfButton
                     square
@@ -151,7 +175,10 @@
             </template>
           </SfInput>
         </form>
-        <nav class="flex flex-nowrap justify-end items-center md:ml-10 gap-x-1" aria-label="SF Navigation">
+        <nav
+          class="flex flex-nowrap justify-end items-center md:ml-10 gap-x-1"
+          aria-label="SF Navigation"
+        >
           <SfButton
             v-for="actionItem in actionItems"
             :key="actionItem.ariaLabel"
@@ -163,13 +190,82 @@
             <template #prefix>
               <Component :is="actionItem.icon" />
             </template>
-            <span v-if="actionItem.role === 'login'" class="hidden lg:inline-flex whitespace-nowrap pr-2">{{
-              actionItem.label
-            }}</span>
+            <span
+              v-if="actionItem.role === 'login'"
+              class="hidden lg:inline-flex whitespace-nowrap pr-2"
+              >{{ actionItem.label }}</span>
+            <transition
+              enter-active-class="transition duration-500 ease-in-out"
+              leave-active-class="transition duration-500 ease-in-out"
+              :enter-from-class="
+                placement === 'left' ? '-translate-x-full' : 'translate-x-full'
+              "
+              :enter-to-class="
+                placement === 'left' ? 'translate-x-0' : 'translate-x-0'
+              "
+              :leave-from-class="
+                placement === 'left' ? 'translate-x-0' : 'translate-x-0'
+              "
+              :leave-to-class="
+                placement === 'left' ? '-translate-x-full' : 'translate-x-full'
+              "
+            >
+              <SfDrawer
+                :placement="placement"
+                :class="[
+                  'bg-neutral-50',
+                  'border',
+                  'border-gray-300',
+                  {
+                    'max-w-[370px]':
+                      placement === 'left' || placement === 'right',
+                  },
+                ]"
+              >
+                <header
+                  class="flex items-center justify-between px-10 py-6 bg-primary-700"
+                >
+                  <div class="flex items-center text-white">
+                    <SfIconFavorite class="mr-2" /> Your favorite items
+                  </div>
+                  <SfButton
+                     ref="cartRef"
+                    square
+                    variant="tertiary"
+                    class="text-white"
+                    @click="close()"
+                    @keydown.enter.space="close()"
+                  >
+                    <SfIconClose />
+                  </SfButton>
+                </header>
+                <div class="p-5 px-10">
+                  <p class="mb-2">
+                    Focus is trapped inside this Drawer and
+                    <strong>tab</strong> button cycle through
+                    <a href="#" class="underline text-primary-700">
+                      Focusable Element
+                    </a>
+                    and another
+                    <a href="#" class="underline text-primary-700">
+                      Focusable Element
+                    </a>
+                  </p>
+                  <strong
+                    >You can close Drawer by clicking outside or focus and use
+                    ESC button</strong
+                  >
+                </div>
+              </SfDrawer>
+            </transition>
           </SfButton>
         </nav>
       </div>
-      <form role="search" class="flex md:hidden flex-[100%] my-2 mx-4" @submit.prevent="search">
+      <form
+        role="search"
+        class="flex md:hidden flex-[100%] my-2 mx-4"
+        @submit.prevent="search"
+      >
         <SfInput
           v-model="inputValue"
           type="search"
@@ -211,24 +307,30 @@ import {
   SfIconMenu,
   SfInput,
   SfIconSearch,
-} from '@storefront-ui/vue';
-import { ref } from 'vue';
-import { onClickOutside } from '@vueuse/core';
+} from "@storefront-ui/vue";
+import { ref } from "vue";
+import { onClickOutside } from "@vueuse/core";
 
-const { isOpen, toggle, close } = useDisclosure();
+const {isOpen, toggle, close } = useDisclosure();
 const menuRef = ref();
 const drawerRef = ref();
+const cartRef = ref();
+useTrapFocus(cartRef, {
+  activeState: isOpen,
+  arrowKeysUpDown: true
+})
+
 
 useTrapFocus(drawerRef, {
   activeState: isOpen,
   arrowKeysUpDown: true,
-  initialFocus: 'container',
+  initialFocus: "container",
 });
 onClickOutside(menuRef, () => {
   close();
 });
 
-const inputValue = ref('');
+const inputValue = ref("");
 
 const search = () => {
   alert(`Successfully found 10 results for ${inputValue.value}`);
@@ -237,107 +339,108 @@ const search = () => {
 const actionItems = [
   {
     icon: SfIconShoppingCart,
-    label: '',
-    ariaLabel: 'Cart',
-    role: 'button',
+    label: "",
+    ariaLabel: "Cart",
+    role: "cart",
   },
   {
     icon: SfIconPerson,
-    label: 'Log in',
-    ariaLabel: 'Log in',
-    role: 'login',
+    label: "Log in",
+    ariaLabel: "Log in",
+    role: "login",
   },
 ];
 const bannerDetails = {
-  image: 'https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/watch.png',
-  title: 'New in designer watches',
+  image:
+    "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/watch.png",
+  title: "New in designer watches",
 };
 
 const categoriesContent = [
   {
-    heading: 'Women',
+    heading: "Women",
     items: [
       {
         title: "All Women's",
-        link: '#',
+        link: "#",
       },
       {
-        title: 'Clothing',
-        link: '#',
+        title: "Clothing",
+        link: "#",
       },
       {
-        title: 'Shoes',
-        link: '#',
+        title: "Shoes",
+        link: "#",
       },
       {
-        title: 'Accessories',
-        link: '#',
+        title: "Accessories",
+        link: "#",
       },
       {
-        title: 'Wearables',
-        link: '#',
+        title: "Wearables",
+        link: "#",
       },
       {
-        title: 'Food & Drinks',
-        link: '#',
-      },
-    ],
-  },
-  {
-    heading: 'Men',
-    items: [
-      {
-        title: 'All Men’s',
-        link: '#',
-      },
-      {
-        title: 'Clothing',
-        link: '#',
-      },
-      {
-        title: 'Shoes',
-        link: '#',
-      },
-      {
-        title: 'Accessories',
-        link: '#',
-      },
-      {
-        title: 'Wearables',
-        link: '#',
-      },
-      {
-        title: 'Food & Drinks',
-        link: '#',
+        title: "Food & Drinks",
+        link: "#",
       },
     ],
   },
   {
-    heading: 'Kids',
+    heading: "Men",
     items: [
       {
-        title: 'All Kids',
-        link: '#',
+        title: "All Men’s",
+        link: "#",
       },
       {
-        title: 'Clothing',
-        link: '#',
+        title: "Clothing",
+        link: "#",
       },
       {
-        title: 'Shoes',
-        link: '#',
+        title: "Shoes",
+        link: "#",
       },
       {
-        title: 'Accessories',
-        link: '#',
+        title: "Accessories",
+        link: "#",
       },
       {
-        title: 'Wearables',
-        link: '#',
+        title: "Wearables",
+        link: "#",
       },
       {
-        title: 'Food & Drinks',
-        link: '#',
+        title: "Food & Drinks",
+        link: "#",
+      },
+    ],
+  },
+  {
+    heading: "Kids",
+    items: [
+      {
+        title: "All Kids",
+        link: "#",
+      },
+      {
+        title: "Clothing",
+        link: "#",
+      },
+      {
+        title: "Shoes",
+        link: "#",
+      },
+      {
+        title: "Accessories",
+        link: "#",
+      },
+      {
+        title: "Wearables",
+        link: "#",
+      },
+      {
+        title: "Food & Drinks",
+        link: "#",
       },
     ],
   },
