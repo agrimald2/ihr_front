@@ -4,7 +4,7 @@
       <h1
         class="my-10 font-bold typography-headline-3 md:typography-headline-2"
       >
-        Prueba
+        Categoria 1
       </h1>
       <div class="md:flex gap-6" data-testid="category-page-content">
         <section

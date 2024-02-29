@@ -17,16 +17,16 @@
           <SfIconMenu class="text-white" />
         </SfButton>
         <a
-          href="#"
+          href="/"
           aria-label="SF Homepage"
           class="flex shrink-0 ml-4 md:ml-0 text-white mr-auto md:mr-10 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
         >
           <picture>
-            <source srcset="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_white.svg" media="(min-width: 1024px)" />
+            <source srcset="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqPdirGbz8JZ3m3s4pGux_ogIuIRlPLFm4Lw&usqp=CAU" />
             <img
               src="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_sign_white.svg"
               alt="Sf Logo"
-              class="w-8 h-8 lg:w-[12.5rem] lg:h-[1.75rem]"
+              class="w-8 h-8 lg:w-[10rem] lg:h-[4rem]"
             />
           </picture>
         </a>
