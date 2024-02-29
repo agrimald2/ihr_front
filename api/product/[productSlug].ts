@@ -696,4 +696,3 @@ const fetchCategories = async () => {
 }
 
 export { fetchProducts, fetchCategories }
-
