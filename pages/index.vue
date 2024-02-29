@@ -1,21 +1,12 @@
 <template>
-  <!-- Centered Main Content with Space on Sides -->
   <div class="wrapper flex justify-center px-4">
     <div class="max-w-screen-lg w-full">
-      <!-- Main Content -->
+
       <div class="main-content">
-        <!-- Promotional Banner -->
-        <!-- <PromotionalBanner /> -->
-
-        <!-- Categories -->
-        <Categories :items="categories" />
-
-        <!-- Featured Products -->
-        <Products :items="products" />
-
-        <!-- Testimonials -->
-        <Testimonials />
+        <UiBanners/>
+        <ProductSlider :items="products" @go-to-product="goToProduct(id)"/>
       </div>
+
     </div>
   </div>
 </template>
@@ -26,6 +17,10 @@ import type { Product, Category } from '~/types'
 
 const products = ref<Product[]>([])
 const categories = ref<Category[]>([])
+
+const goToProduct = (id: any) => {
+  this.$router.push(`/products/${id}`)
+}
 
 try {
   const productsData = await fetchProducts()
