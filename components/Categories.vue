@@ -64,8 +64,12 @@
 
 <script setup>
 const props = defineProps({
-  items: Array,
+  items: {
+    type: Array,
+    default: () => [],
+  },
 });
+
 const categories = props.items;
 
 const scrollLeft = () => {
