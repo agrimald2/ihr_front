@@ -9,6 +9,7 @@
       :key="product.id"
       class="max-w-[192px]"
       :product = product
+      @go-to-product="$emit('goToProduct', product.id)"
     />
   </SfScrollable>
 </template>

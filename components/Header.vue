@@ -22,21 +22,16 @@
           <SfIconMenu class="text-white" />
         </SfButton>
         <a
-          href="#"
+          href="/"
           aria-label="SF Homepage"
           class="flex shrink-0 ml-4 md:ml-0 text-white mr-auto md:mr-10 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
         >
           <picture>
-            <source
-              srcset="
-                https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_white.svg
-              "
-              media="(min-width: 1024px)"
-            />
+            <source srcset="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqPdirGbz8JZ3m3s4pGux_ogIuIRlPLFm4Lw&usqp=CAU" />
             <img
               src="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_sign_white.svg"
               alt="Sf Logo"
-              class="w-8 h-8 lg:w-[12.5rem] lg:h-[1.75rem]"
+              class="w-8 h-8 lg:w-[10rem] lg:h-[4rem]"
             />
           </picture>
         </a>
@@ -310,42 +305,48 @@ import {
   SfIconMenu,
   SfInput,
   SfIconSearch,
-} from "@storefront-ui/vue";
-import { ref } from "vue";
-import { onClickOutside } from "@vueuse/core";
+} from "@storefront-ui/vue"
+import { ref } from "vue"
+import { onClickOutside } from "@vueuse/core"
 
 const {
   isOpen: isCategoryDropDownOpen,
   toggle: categoryDropDownToggle,
   close: categoriesModalClose,
-} = useDisclosure();
+} = useDisclosure()
 const {
   isOpen: isCartDrownOpen,
   toggle: cartDropDownToggle,
   close: cartModalClose,
-} = useDisclosure();
-const menuRef = ref();
-const drawerRef = ref();
-const cartRef = ref();
+} = useDisclosure()
+const menuRef = ref()
+const drawerRef = ref()
+const cartRef = ref()
+const router = useRouter()
 useTrapFocus(cartRef, {
   activeState: isCartDrownOpen,
   arrowKeysUpDown: true,
-});
+})
 
 useTrapFocus(drawerRef, {
   activeState: isCategoryDropDownOpen,
   arrowKeysUpDown: true,
   initialFocus: "container",
-});
+})
 onClickOutside(menuRef, () => {
-  close();
-});
+  close()
+})
 
-const inputValue = ref("");
+const inputValue = ref('')
 
 const search = () => {
-  alert(`Successfully found 10 results for ${inputValue.value}`);
-};
+  router.push({
+    path: '/search',
+    query: {
+      name: inputValue.value
+    }
+  })
+}
 
 const actionItems = [
   {
@@ -360,12 +361,11 @@ const actionItems = [
     ariaLabel: "Log in",
     role: "login",
   },
-];
+]
 const bannerDetails = {
-  image:
-    "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/watch.png",
-  title: "New in designer watches",
-};
+  image: 'https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/watch.png',
+  title: 'New in designer watches',
+}
 
 const categoriesContent = [
   {
@@ -455,5 +455,5 @@ const categoriesContent = [
       },
     ],
   },
-];
+]
 </script>

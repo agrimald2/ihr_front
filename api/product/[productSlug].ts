@@ -1,4 +1,4 @@
-const BASE_URL = 'https://thr-backend.camionerosperuanos.org/api/';
+const BASE_URL = 'https://thr-backend.camionerosperuanos.org/api/'
 
 
 const productsResponse = {
@@ -662,38 +662,36 @@ function fakeAsyncEndpoint(data: any, delay: number = 1000): Promise<Response> {
         statusText: "OK",
         json: () => Promise.resolve(data),
         // Add other properties and methods as needed
-      } as Response);
-    }, delay);
-  });
+      } as Response)
+    }, delay)
+  })
 }
 
 const fetchProducts = async () => {
   try {
-    // const response = await fetch(`${BASE_URL}product`);
-    // const response = await fetch('https://fakestoreapi.com/products');
+    // const response = await fetch(`${BASE_URL}product`)
     const response = await fakeAsyncEndpoint(productsResponse, 1000)
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error('Network response was not ok')
     }
-    return await response.json();
+    return await response.json()
   } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-    throw error;
+    console.error('There was a problem with the fetch operation:', error)
+    throw error
   }
 }
 
 const fetchCategories = async () => {
   try {
-    // const response = await fetch(`${BASE_URL}product`);
-    // const response = await fetch('https://fakestoreapi.com/products');
-    const response = await fakeAsyncEndpoint(categoryResponse, 1000)
+    const response = await fetch(`${BASE_URL}product`)
+    // const response = await fakeAsyncEndpoint(categoryResponse, 1000)
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error('Network response was not ok')
     }
-    return await response.json();
+    return await response.json()
   } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-    throw error;
+    console.error('There was a problem with the fetch operation:', error)
+    throw error
   }
 }
 
