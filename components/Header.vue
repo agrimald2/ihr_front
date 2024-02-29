@@ -46,7 +46,7 @@
           :aria-expanded="isOpen"
           variant="tertiary"
           square
-          @click="toggle()"
+          @click="categoryDropDownToggle"
         >
           <template #suffix>
             <SfIconExpandMore class="hidden md:inline-flex" />
@@ -68,7 +68,7 @@
               >
                 <SfDrawer
                   ref="drawerRef"
-                  v-model="isOpen"
+                  v-model="isCategoryDropDownOpen"
                   disable-click-away
                   placement="top"
                   class="grid grid-cols-1 md:gap-x-6 md:grid-cols-4 bg-white shadow-lg p-0 max-h-screen overflow-y-auto md:!absolute md:!top-[5rem] max-w-[376px] md:max-w-full md:p-6 mr-[50px] md:mr-0"
@@ -86,8 +86,8 @@
                       variant="tertiary"
                       aria-label="Close navigation menu"
                       class="text-white ml-2"
-                      @click="close()"
-                      @keydown.enter.space="close()"
+                      @click="categoriesModalClose"
+                      @keydown.enter.space="categoriesModalClose"
                     >
                       <SfIconClose />
                     </SfButton>
@@ -138,7 +138,7 @@
                     variant="tertiary"
                     aria-label="Close navigation menu"
                     class="hidden md:block md:absolute md:right-0 hover:bg-white active:bg-white"
-                    @click="close()"
+                    @click="categoriesModalClose"
                   >
                     <SfIconClose class="text-neutral-500" />
                   </SfButton>
@@ -185,6 +185,7 @@
             class="text-white bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
             :aria-label="actionItem.ariaLabel"
             variant="tertiary"
+            @click="cartDropDownToggle"
             square
           >
             <template #prefix>
@@ -193,24 +194,28 @@
             <span
               v-if="actionItem.role === 'login'"
               class="hidden lg:inline-flex whitespace-nowrap pr-2"
-              >{{ actionItem.label }}</span>
+              >{{ actionItem.label }}</span
+            >
             <transition
-              enter-active-class="transition duration-500 ease-in-out"
-              leave-active-class="transition duration-500 ease-in-out"
+              v-if="actionItem.role === 'cart'"
+              enter-active-class="transform transition duration-500 ease-in-out"
+              leave-active-class="transform transition duration-500 ease-in-out"
               :enter-from-class="
-                placement === 'left' ? '-translate-x-full' : 'translate-x-full'
+                placement === 'right' ? '-translate-x-full' : 'translate-x-full'
               "
               :enter-to-class="
-                placement === 'left' ? 'translate-x-0' : 'translate-x-0'
+                placement === 'right' ? 'translate-x-0' : 'translate-x-0'
               "
               :leave-from-class="
-                placement === 'left' ? 'translate-x-0' : 'translate-x-0'
+                placement === 'right' ? 'translate-x-0' : 'translate-x-0'
               "
               :leave-to-class="
-                placement === 'left' ? '-translate-x-full' : 'translate-x-full'
+                placement === 'right' ? '-translate-x-full' : 'translate-x-full'
               "
             >
               <SfDrawer
+                ref="cartRef"
+                v-model="isCartDrownOpen"
                 :placement="placement"
                 :class="[
                   'bg-neutral-50',
@@ -229,12 +234,10 @@
                     <SfIconFavorite class="mr-2" /> Your favorite items
                   </div>
                   <SfButton
-                     ref="cartRef"
                     square
                     variant="tertiary"
                     class="text-white"
-                    @click="close()"
-                    @keydown.enter.space="close()"
+                    @click="cartModalClose"
                   >
                     <SfIconClose />
                   </SfButton>
@@ -311,18 +314,26 @@ import {
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 
-const {isOpen, toggle, close } = useDisclosure();
+const {
+  isOpen: isCategoryDropDownOpen,
+  toggle: categoryDropDownToggle,
+  close: categoriesModalClose,
+} = useDisclosure();
+const {
+  isOpen: isCartDrownOpen,
+  toggle: cartDropDownToggle,
+  close: cartModalClose,
+} = useDisclosure();
 const menuRef = ref();
 const drawerRef = ref();
 const cartRef = ref();
 useTrapFocus(cartRef, {
-  activeState: isOpen,
-  arrowKeysUpDown: true
-})
-
+  activeState: isCartDrownOpen,
+  arrowKeysUpDown: true,
+});
 
 useTrapFocus(drawerRef, {
-  activeState: isOpen,
+  activeState: isCategoryDropDownOpen,
   arrowKeysUpDown: true,
   initialFocus: "container",
 });
