@@ -58,13 +58,13 @@ import {
   SfCounter,
   SfButton,
   SfIconShoppingCart,
-} from "@storefront-ui/vue";
+} from '@storefront-ui/vue'
 const props = defineProps({
   product: {
     type: Object,
     default: {},
   },
-});
+})
 
-const NuxtLink = resolveComponent("NuxtLink");
+const NuxtLink = resolveComponent('NuxtLink')
 </script>

@@ -134,19 +134,19 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
+import { ref, computed } from 'vue'
 import {
   SfButton,
   SfInput,
   SfLink,
   SfIconClose,
   SfIconCheckCircle,
-} from "@storefront-ui/vue";
+} from '@storefront-ui/vue'
 
-const inputValue = ref("");
-const showRemovedCodeAlert = ref(false);
-const showAddedCodeAlert = ref(false);
-const showErrorAlert = ref(false);
+const inputValue = ref('')
+const showRemovedCodeAlert = ref(false)
+const showAddedCodeAlert = ref(false)
+const showErrorAlert = ref(false)
 
 const orderDetails = {
   items: 3,
@@ -154,9 +154,9 @@ const orderDetails = {
   savings: -787.0,
   delivery: 0.0,
   tax: 457.47,
-};
+}
 
-const promoCode = ref(0);
+const promoCode = ref(0)
 
 const itemsSubtotal = computed(
   () =>
@@ -164,37 +164,37 @@ const itemsSubtotal = computed(
     orderDetails.savings +
     orderDetails.delivery +
     orderDetails.tax,
-);
+)
 
-const totalPrice = computed(() => itemsSubtotal.value + promoCode.value);
+const totalPrice = computed(() => itemsSubtotal.value + promoCode.value)
 
 const checkPromoCode = () => {
   if (
     (promoCode.value === -100 &&
-      inputValue.value.toUpperCase() === "VSF2020") ||
+      inputValue.value.toUpperCase() === 'VSF2020') ||
     !inputValue.value
   )
-    return;
-  if (inputValue.value.toUpperCase() === "VSF2020") {
-    promoCode.value = -100;
-    showAddedCodeAlert.value = true;
-    setTimeout(() => (showAddedCodeAlert.value = false), 5000);
+    return
+  if (inputValue.value.toUpperCase() === 'VSF2020') {
+    promoCode.value = -100
+    showAddedCodeAlert.value = true
+    setTimeout(() => (showAddedCodeAlert.value = false), 5000)
   } else {
-    showErrorAlert.value = true;
-    setTimeout(() => (showErrorAlert.value = false), 5000);
+    showErrorAlert.value = true
+    setTimeout(() => (showErrorAlert.value = false), 5000)
   }
-};
+}
 
 const removePromoCode = () => {
-  promoCode.value = 0;
-  showRemovedCodeAlert.value = true;
-  setTimeout(() => (showRemovedCodeAlert.value = false), 5000);
-};
+  promoCode.value = 0
+  showRemovedCodeAlert.value = true
+  setTimeout(() => (showRemovedCodeAlert.value = false), 5000)
+}
 
 const formatPrice = (price: number) => {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(price);
-};
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(price)
+}
 </script>

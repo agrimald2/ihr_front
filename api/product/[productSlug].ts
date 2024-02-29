@@ -1,4 +1,4 @@
-const BASE_URL = "https://thr-backend.camionerosperuanos.org/api/";
+const BASE_URL = 'https://thr-backend.camionerosperuanos.org/api/'
 
 function fakeAsyncEndpoint(data: any, delay: number = 1000): Promise<Response> {
   return new Promise((resolve) => {
@@ -6,38 +6,38 @@ function fakeAsyncEndpoint(data: any, delay: number = 1000): Promise<Response> {
       resolve({
         ok: true,
         status: 200,
-        statusText: "OK",
+        statusText: 'OK',
         json: () => Promise.resolve(data),
         // Add other properties and methods as needed
-      } as Response);
-    }, delay);
-  });
+      } as Response)
+    }, delay)
+  })
 }
 
 const fetchProducts = async () => {
   try {
-    const response = await fetch(`${BASE_URL}product`);
+    const response = await fetch(`${BASE_URL}product`)
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error('Network response was not ok')
     }
-    return await response.json();
+    return await response.json()
   } catch (error) {
-    console.error("There was a problem with the fetch operation:", error);
-    throw error;
+    console.error('There was a problem with the fetch operation:', error)
+    throw error
   }
-};
+}
 
 const fetchCategories = async () => {
   try {
-    const response = await fetch(`${BASE_URL}category`);
+    const response = await fetch(`${BASE_URL}category`)
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error('Network response was not ok')
     }
-    return await response.json();
+    return await response.json()
   } catch (error) {
-    console.error("There was a problem with the fetch operation:", error);
-    throw error;
+    console.error('There was a problem with the fetch operation:', error)
+    throw error
   }
-};
+}
 
-export { fetchProducts, fetchCategories };
+export { fetchProducts, fetchCategories }

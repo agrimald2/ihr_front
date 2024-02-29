@@ -27,13 +27,13 @@
 </template>
 
 <script setup>
-import { SfButton } from "@storefront-ui/vue";
+import { SfButton } from '@storefront-ui/vue'
 
 const cart = {
   lineItems: [
-    { name: "Producto 1", totalPrice: 10, atributes: "test" },
-    { name: "Producto 2", totalPrice: 20, atributes: "test" },
+    { name: 'Producto 1', totalPrice: 10, atributes: 'test' },
+    { name: 'Producto 2', totalPrice: 20, atributes: 'test' },
   ],
-};
-const NuxtLink = resolveComponent("NuxtLink");
+}
+const NuxtLink = resolveComponent('NuxtLink')
 </script>

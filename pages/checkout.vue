@@ -16,17 +16,17 @@
             >
               <p class="number mb-5 sm:text-xl">
                 {{
-                  cardData.cardNumber !== ""
+                  cardData.cardNumber !== ''
                     ? cardData.cardNumber
-                    : "0000-0000-0000-0000"
+                    : '0000-0000-0000-0000'
                 }}
               </p>
               <div class="flex flex-row justify-between">
                 <p>
                   {{
-                    cardData.cardholder !== ""
+                    cardData.cardholder !== ''
                       ? cardData.cardholder
-                      : "Card holder"
+                      : 'Card holder'
                   }}
                 </p>
                 <div class="">
@@ -51,9 +51,9 @@
               >
                 <p>
                   {{
-                    cardData.securityCode !== ""
+                    cardData.securityCode !== ''
                       ? cardData.securityCode
-                      : "code"
+                      : 'code'
                   }}
                 </p>
               </div>
@@ -194,35 +194,35 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
   data() {
     return {
       cardData: {
-        cardholder: "",
-        cardNumber: "",
+        cardholder: '',
+        cardNumber: '',
         expired: {
-          month: "",
-          year: "",
+          month: '',
+          year: '',
         },
-        securityCode: "",
-        email: "agrimaldopci18@gmail.com",
+        securityCode: '',
+        email: 'agrimaldopci18@gmail.com',
       },
       amount: 100,
-      currency: "PEN",
-      description: "Pago de prueba",
-      card: "front",
+      currency: 'PEN',
+      description: 'Pago de prueba',
+      card: 'front',
       openpay: {
-        token: "",
-        endpoint_sandbox_openpay: "https://sandbox-api.openpay.pe/v1/",
-        endpoint_payment: "/charge",
-        deviceSessionId: "",
-        openpay_id: "mhn6hsjlwdbeksjbk8v3",
-        openpay_key: "pk_7c145f64092b4381bee18cdd92b353d4",
+        token: '',
+        endpoint_sandbox_openpay: 'https://sandbox-api.openpay.pe/v1/',
+        endpoint_payment: '/charge',
+        deviceSessionId: '',
+        openpay_id: 'mhn6hsjlwdbeksjbk8v3',
+        openpay_key: 'pk_7c145f64092b4381bee18cdd92b353d4',
         openpay_sandbox_mode: true,
       },
-    };
+    }
   },
   // mounted() {
   //     OpenPay.setId(import.meta.env.VITE_OPENPAY_ID);
@@ -233,38 +233,38 @@ export default {
   computed: {
     isValid() {
       if (this.cardData.cardholder.length < 5) {
-        return false;
+        return false
       }
-      if (this.cardData.cardNumber.replace(/\s/g, "").length <= 12) {
-        return false;
+      if (this.cardData.cardNumber.replace(/\s/g, '').length <= 12) {
+        return false
       }
       if (
-        this.cardData.expired.month === "" ||
-        this.cardData.expired.year === ""
+        this.cardData.expired.month === '' ||
+        this.cardData.expired.year === ''
       ) {
-        return false;
+        return false
       }
       if (this.cardData.securityCode.length < 3) {
-        return false;
+        return false
       }
-      return true;
+      return true
     },
   },
   methods: {
     format() {
       this.cardData.cardNumber = this.cardData.cardNumber
-        .replace(/\W/gi, "")
-        .replace(/(.{4})/g, "$1 ")
-        .trim();
+        .replace(/\W/gi, '')
+        .replace(/(.{4})/g, '$1 ')
+        .trim()
     },
     noSpaces() {
-      return this.cardData.cardNumber.replace(/\s/g, "");
+      return this.cardData.cardNumber.replace(/\s/g, '')
     },
     onSubmit() {
-      this.pay();
+      this.pay()
     },
     async pay() {
-      const card_number = this.noSpaces();
+      const card_number = this.noSpaces()
       try {
         // generate token to perform the charge
         // const tokenResponse = await new Promise((resolve, reject) => {
@@ -281,29 +281,29 @@ export default {
 
         // if (this.openpay.token) {
         // payment in OpenPay
-        console.log(this.openpay.token, "Token obtenido:");
+        console.log(this.openpay.token, 'Token obtenido:')
         const data = {
-          card_number: "4111111111111111",
-          holder_name: "Juan Perez Ramirez",
-          expiration_year: "24",
-          expiration_month: "12",
-          cvv2: "110",
+          card_number: '4111111111111111',
+          holder_name: 'Juan Perez Ramirez',
+          expiration_year: '24',
+          expiration_month: '12',
+          cvv2: '110',
           address: {
-            city: "Querétaro",
-            country_code: "MX",
-            postal_code: "76900",
-            line1: "Av 5 de Febrero",
-            line2: "Roble 207",
-            line3: "col carrillo",
-            state: "Queretaro",
+            city: 'Querétaro',
+            country_code: 'MX',
+            postal_code: '76900',
+            line1: 'Av 5 de Febrero',
+            line2: 'Roble 207',
+            line3: 'col carrillo',
+            state: 'Queretaro',
           },
-        };
-        const apiKey = "sk_4760ff211613450e956d470dfa544929";
-        const auth = { username: apiKey, password: "" };
+        }
+        const apiKey = 'sk_4760ff211613450e956d470dfa544929'
+        const auth = { username: apiKey, password: '' }
         const headers = {
           withCredentials: true,
-          crossOriginIsolated: "same-origin",
-        };
+          crossOriginIsolated: 'same-origin',
+        }
         // const paymentResponse = await axios
         //   .post(
         //     "https://sandbox-api.openpay.pe/v1/mrvfi7f4rsnkp9egkous/tokens",
@@ -316,21 +316,21 @@ export default {
         //     console.log("Respuesta exitosa:", response.data);
         //   });
         const paymentResponse = await axios
-          .get("https://thr-backend.camionerosperuanos.org/api/product", {
+          .get('https://thr-backend.camionerosperuanos.org/api/product', {
             headers,
           })
           .then((response) => {
-            console.log("Respuesta exitosa:", response.data);
-          });
-        alert(`You did it ${this.cardData.cardholder}.`);
-        console.log(paymentResponse);
+            console.log('Respuesta exitosa:', response.data)
+          })
+        alert(`You did it ${this.cardData.cardholder}.`)
+        console.log(paymentResponse)
         // }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     },
   },
-};
+}
 </script>
 
 <style scoped>

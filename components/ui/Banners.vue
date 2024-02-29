@@ -22,25 +22,25 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { SfButton, SfScrollable } from "@storefront-ui/vue";
+import { SfButton, SfScrollable } from '@storefront-ui/vue'
 const banners = [
   {
     image:
-      "https://http2.mlstatic.com/D_NQ_647409-MLA74796335999_022024-OO.webp",
-    title: "Feel the music",
-    label: "New Wireless Pro",
+      'https://http2.mlstatic.com/D_NQ_647409-MLA74796335999_022024-OO.webp',
+    title: 'Feel the music',
+    label: 'New Wireless Pro',
     ariaLabel:
-      "Spatial audio. Adjustable ear cups. On-device controls. All-day battery.",
-    role: "button",
+      'Spatial audio. Adjustable ear cups. On-device controls. All-day battery.',
+    role: 'button',
   },
   {
     image:
-      "https://http2.mlstatic.com/D_NQ_647409-MLA74796335999_022024-OO.webp",
-    title: "Feel the music",
-    label: "New Wireless mini",
+      'https://http2.mlstatic.com/D_NQ_647409-MLA74796335999_022024-OO.webp',
+    title: 'Feel the music',
+    label: 'New Wireless mini',
     ariaLabel:
-      "Spatial audio. Adjustable ear cups. On-device controls. All-day battery.",
-    role: "button",
+      'Spatial audio. Adjustable ear cups. On-device controls. All-day battery.',
+    role: 'button',
   },
-];
+]
 </script>

@@ -309,156 +309,156 @@ import {
   SfIconMenu,
   SfInput,
   SfIconSearch,
-} from "@storefront-ui/vue";
-import { ref } from "vue";
-import { onClickOutside } from "@vueuse/core";
+} from '@storefront-ui/vue'
+import { ref } from 'vue'
+import { onClickOutside } from '@vueuse/core'
 
 const {
   isOpen: isCategoryDropDownOpen,
   toggle: categoryDropDownToggle,
   close: categoriesModalClose,
-} = useDisclosure();
+} = useDisclosure()
 const {
   isOpen: isCartDrownOpen,
   toggle: cartDropDownToggle,
   close: cartModalClose,
-} = useDisclosure();
-const menuRef = ref();
-const drawerRef = ref();
-const cartRef = ref();
-const router = useRouter();
+} = useDisclosure()
+const menuRef = ref()
+const drawerRef = ref()
+const cartRef = ref()
+const router = useRouter()
 useTrapFocus(cartRef, {
   activeState: isCartDrownOpen,
   arrowKeysUpDown: true,
-});
+})
 
 useTrapFocus(drawerRef, {
   activeState: isCategoryDropDownOpen,
   arrowKeysUpDown: true,
-  initialFocus: "container",
-});
+  initialFocus: 'container',
+})
 onClickOutside(menuRef, () => {
-  close();
-});
+  close()
+})
 
-const inputValue = ref("");
+const inputValue = ref('')
 
 const search = () => {
   router.push({
-    path: "/search",
+    path: '/search',
     query: {
       name: inputValue.value,
     },
-  });
-};
+  })
+}
 
 const actionItems = [
   {
     icon: SfIconShoppingCart,
-    label: "",
-    ariaLabel: "Cart",
-    role: "cart",
+    label: '',
+    ariaLabel: 'Cart',
+    role: 'cart',
   },
   {
     icon: SfIconPerson,
-    label: "Log in",
-    ariaLabel: "Log in",
-    role: "login",
+    label: 'Log in',
+    ariaLabel: 'Log in',
+    role: 'login',
   },
-];
+]
 const bannerDetails = {
   image:
-    "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/watch.png",
-  title: "New in designer watches",
-};
+    'https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/watch.png',
+  title: 'New in designer watches',
+}
 
 const categoriesContent = [
   {
-    heading: "Women",
+    heading: 'Women',
     items: [
       {
         title: "All Women's",
-        link: "#",
+        link: '#',
       },
       {
-        title: "Clothing",
-        link: "#",
+        title: 'Clothing',
+        link: '#',
       },
       {
-        title: "Shoes",
-        link: "#",
+        title: 'Shoes',
+        link: '#',
       },
       {
-        title: "Accessories",
-        link: "#",
+        title: 'Accessories',
+        link: '#',
       },
       {
-        title: "Wearables",
-        link: "#",
+        title: 'Wearables',
+        link: '#',
       },
       {
-        title: "Food & Drinks",
-        link: "#",
+        title: 'Food & Drinks',
+        link: '#',
       },
     ],
   },
   {
-    heading: "Men",
+    heading: 'Men',
     items: [
       {
-        title: "All Men’s",
-        link: "#",
+        title: 'All Men’s',
+        link: '#',
       },
       {
-        title: "Clothing",
-        link: "#",
+        title: 'Clothing',
+        link: '#',
       },
       {
-        title: "Shoes",
-        link: "#",
+        title: 'Shoes',
+        link: '#',
       },
       {
-        title: "Accessories",
-        link: "#",
+        title: 'Accessories',
+        link: '#',
       },
       {
-        title: "Wearables",
-        link: "#",
+        title: 'Wearables',
+        link: '#',
       },
       {
-        title: "Food & Drinks",
-        link: "#",
+        title: 'Food & Drinks',
+        link: '#',
       },
     ],
   },
   {
-    heading: "Kids",
+    heading: 'Kids',
     items: [
       {
-        title: "All Kids",
-        link: "#",
+        title: 'All Kids',
+        link: '#',
       },
       {
-        title: "Clothing",
-        link: "#",
+        title: 'Clothing',
+        link: '#',
       },
       {
-        title: "Shoes",
-        link: "#",
+        title: 'Shoes',
+        link: '#',
       },
       {
-        title: "Accessories",
-        link: "#",
+        title: 'Accessories',
+        link: '#',
       },
       {
-        title: "Wearables",
-        link: "#",
+        title: 'Wearables',
+        link: '#',
       },
       {
-        title: "Food & Drinks",
-        link: "#",
+        title: 'Food & Drinks',
+        link: '#',
       },
     ],
   },
-];
+]
 </script>

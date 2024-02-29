@@ -42,9 +42,5 @@
 </template>
 
 <script setup lang="ts">
-import {
-  SfButton,
-  SfIconArrowBack,
-  SfLoaderCircular,
-} from "@storefront-ui/vue";
+import { SfButton, SfIconArrowBack, SfLoaderCircular } from '@storefront-ui/vue'
 </script>

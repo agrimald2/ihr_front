@@ -15,9 +15,9 @@
 </template>
 
 <script setup>
-import { SfScrollable } from "@storefront-ui/vue";
+import { SfScrollable } from '@storefront-ui/vue'
 const props = defineProps({
   items: Array,
-});
-const products = props.items;
+})
+const products = props.items
 </script>

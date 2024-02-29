@@ -68,17 +68,17 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
-});
+})
 
-const categories = props.items;
+const categories = props.items
 
 const scrollLeft = () => {
-  const container = document.querySelector(".grid");
-  container.scrollLeft -= 100;
-};
+  const container = document.querySelector('.grid')
+  container.scrollLeft -= 100
+}
 
 const scrollRight = () => {
-  const container = document.querySelector(".grid");
-  container.scrollLeft += 100;
-};
+  const container = document.querySelector('.grid')
+  container.scrollLeft += 100
+}
 </script>

@@ -38,56 +38,56 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 import {
   SfAccordionItem,
   SfCounter,
   SfListItem,
   SfThumbnail,
   SfIconChevronLeft,
-} from "@storefront-ui/vue";
+} from '@storefront-ui/vue'
 
 const colorValues = ref([
   {
-    id: "c1",
-    label: "Primary",
-    value: "bg-primary-500",
+    id: 'c1',
+    label: 'Primary',
+    value: 'bg-primary-500',
     counter: 10,
   },
   {
-    id: "c2",
-    label: "Black and gray",
-    value: "bg-[linear-gradient(-45deg,#000_50%,#d1d5db_50%)]",
+    id: 'c2',
+    label: 'Black and gray',
+    value: 'bg-[linear-gradient(-45deg,#000_50%,#d1d5db_50%)]',
     counter: 5,
   },
   {
-    id: "c3",
-    label: "Violet",
-    value: "bg-violet-500",
+    id: 'c3',
+    label: 'Violet',
+    value: 'bg-violet-500',
     counter: 0,
   },
   {
-    id: "c4",
-    label: "Red",
-    value: "bg-red-500",
+    id: 'c4',
+    label: 'Red',
+    value: 'bg-red-500',
     counter: 2,
   },
   {
-    id: "c5",
-    label: "Yellow",
-    value: "bg-yellow-500",
+    id: 'c5',
+    label: 'Yellow',
+    value: 'bg-yellow-500',
     counter: 100,
   },
   {
-    id: "c6",
-    label: "Avocado",
-    value: "bg-gradient-to-tr from-yellow-300 to-primary-500",
+    id: 'c6',
+    label: 'Avocado',
+    value: 'bg-gradient-to-tr from-yellow-300 to-primary-500',
     counter: 14,
   },
-]);
-const open = ref(true);
-const selectedValues = ref<string[]>([]);
+])
+const open = ref(true)
+const selectedValues = ref<string[]>([])
 const isItemActive = (val: string) => {
-  return selectedValues.value?.includes(val);
-};
+  return selectedValues.value?.includes(val)
+}
 </script>

@@ -9,25 +9,25 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { fetchProducts, fetchCategories } from "~/api/product/[productSlug]";
-import type { Product, Category } from "~/types";
+import { fetchProducts, fetchCategories } from '~/api/product/[productSlug]'
+import type { Product, Category } from '~/types'
 
-const products = ref<Product[]>([]);
-const categories = ref<Category[]>([]);
+const products = ref<Product[]>([])
+const categories = ref<Category[]>([])
 
 const goToProduct = (id: any) => {
-  this.$router.push(`/products/${id}`);
-};
+  this.$router.push(`/products/${id}`)
+}
 
 try {
-  const productsData = await fetchProducts();
-  products.value = productsData.results;
-  console.log("Products: ", products.value);
-  const categoryData = await fetchCategories();
-  categories.value = categoryData.results;
-  console.log("Categories: ", categories.value);
+  const productsData = await fetchProducts()
+  products.value = productsData.results
+  console.log('Products: ', products.value)
+  const categoryData = await fetchCategories()
+  categories.value = categoryData.results
+  console.log('Categories: ', categories.value)
 } catch (error) {
-  console.error("Failed to fetch products:", error);
+  console.error('Failed to fetch products:', error)
 }
 // onMounted(async () => {
 // })

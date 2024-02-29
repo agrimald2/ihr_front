@@ -85,83 +85,83 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 import {
   SfScrollable,
   SfButton,
   SfIconChevronLeft,
   SfIconChevronRight,
   type SfScrollableOnDragEndData,
-} from "@storefront-ui/vue";
-import { unrefElement, useIntersectionObserver } from "@vueuse/core";
-import { watch, type ComponentPublicInstance } from "vue";
+} from '@storefront-ui/vue'
+import { unrefElement, useIntersectionObserver } from '@vueuse/core'
+import { watch, type ComponentPublicInstance } from 'vue'
 
 const withBase = (filepath: string) =>
-  `https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/gallery/${filepath}`;
+  `https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/gallery/${filepath}`
 
 const images = [
   {
-    imageSrc: withBase("gallery_1.png"),
-    imageThumbSrc: withBase("gallery_1_thumb.png"),
-    alt: "backpack1",
+    imageSrc: withBase('gallery_1.png'),
+    imageThumbSrc: withBase('gallery_1_thumb.png'),
+    alt: 'backpack1',
   },
   {
-    imageSrc: withBase("gallery_2.png"),
-    imageThumbSrc: withBase("gallery_2_thumb.png"),
-    alt: "backpack2",
+    imageSrc: withBase('gallery_2.png'),
+    imageThumbSrc: withBase('gallery_2_thumb.png'),
+    alt: 'backpack2',
   },
   {
-    imageSrc: withBase("gallery_3.png"),
-    imageThumbSrc: withBase("gallery_3_thumb.png"),
-    alt: "backpack3",
+    imageSrc: withBase('gallery_3.png'),
+    imageThumbSrc: withBase('gallery_3_thumb.png'),
+    alt: 'backpack3',
   },
   {
-    imageSrc: withBase("gallery_4.png"),
-    imageThumbSrc: withBase("gallery_4_thumb.png"),
-    alt: "backpack4",
+    imageSrc: withBase('gallery_4.png'),
+    imageThumbSrc: withBase('gallery_4_thumb.png'),
+    alt: 'backpack4',
   },
   {
-    imageSrc: withBase("gallery_5.png"),
-    imageThumbSrc: withBase("gallery_5_thumb.png"),
-    alt: "backpack5",
+    imageSrc: withBase('gallery_5.png'),
+    imageThumbSrc: withBase('gallery_5_thumb.png'),
+    alt: 'backpack5',
   },
   {
-    imageSrc: withBase("gallery_6.png"),
-    imageThumbSrc: withBase("gallery_6_thumb.png"),
-    alt: "backpack6",
+    imageSrc: withBase('gallery_6.png'),
+    imageThumbSrc: withBase('gallery_6_thumb.png'),
+    alt: 'backpack6',
   },
   {
-    imageSrc: withBase("gallery_7.png"),
-    imageThumbSrc: withBase("gallery_7_thumb.png"),
-    alt: "backpack7",
+    imageSrc: withBase('gallery_7.png'),
+    imageThumbSrc: withBase('gallery_7_thumb.png'),
+    alt: 'backpack7',
   },
   {
-    imageSrc: withBase("gallery_8.png"),
-    imageThumbSrc: withBase("gallery_8_thumb.png"),
-    alt: "backpack8",
+    imageSrc: withBase('gallery_8.png'),
+    imageThumbSrc: withBase('gallery_8_thumb.png'),
+    alt: 'backpack8',
   },
   {
-    imageSrc: withBase("gallery_9.png"),
-    imageThumbSrc: withBase("gallery_9_thumb.png"),
-    alt: "backpack9",
+    imageSrc: withBase('gallery_9.png'),
+    imageThumbSrc: withBase('gallery_9_thumb.png'),
+    alt: 'backpack9',
   },
   {
-    imageSrc: withBase("gallery_10.png"),
-    imageThumbSrc: withBase("gallery_10_thumb.png"),
-    alt: "backpack10",
+    imageSrc: withBase('gallery_10.png'),
+    imageThumbSrc: withBase('gallery_10_thumb.png'),
+    alt: 'backpack10',
   },
   {
-    imageSrc: withBase("gallery_11.png"),
-    imageThumbSrc: withBase("gallery_11_thumb.png"),
-    alt: "backpack11",
+    imageSrc: withBase('gallery_11.png'),
+    imageThumbSrc: withBase('gallery_11_thumb.png'),
+    alt: 'backpack11',
   },
-];
-const thumbsRef = ref<HTMLElement>();
-const firstThumbRef = ref<HTMLButtonElement>();
-const lastThumbRef = ref<HTMLButtonElement>();
-const firstThumbVisible = ref(false);
-const lastThumbVisible = ref(false);
-const activeIndex = ref(0);
+]
+const thumbsRef = ref<HTMLElement>()
+const firstThumbRef = ref<HTMLButtonElement>()
+const lastThumbRef = ref<HTMLButtonElement>()
+const firstThumbVisible = ref(false)
+const lastThumbVisible = ref(false)
+const activeIndex = ref(0)
 
 watch(
   thumbsRef,
@@ -170,18 +170,18 @@ watch(
       useIntersectionObserver(
         firstThumbRef,
         ([{ isIntersecting }]) => {
-          firstThumbVisible.value = isIntersecting;
+          firstThumbVisible.value = isIntersecting
         },
         {
           root: unrefElement(thumbsRef),
-          rootMargin: "0px",
+          rootMargin: '0px',
           threshold: 1,
         },
-      );
+      )
     }
   },
   { immediate: true },
-);
+)
 
 watch(
   thumbsRef,
@@ -190,36 +190,36 @@ watch(
       useIntersectionObserver(
         lastThumbRef,
         ([{ isIntersecting }]) => {
-          lastThumbVisible.value = isIntersecting;
+          lastThumbVisible.value = isIntersecting
         },
         {
           root: unrefElement(thumbsRef),
-          rootMargin: "0px",
+          rootMargin: '0px',
           threshold: 1,
         },
-      );
+      )
     }
   },
   { immediate: true },
-);
+)
 
 const onDragged = (event: SfScrollableOnDragEndData) => {
   if (event.swipeRight && activeIndex.value > 0) {
-    activeIndex.value -= 1;
+    activeIndex.value -= 1
   } else if (event.swipeLeft && activeIndex.value < images.length - 1) {
-    activeIndex.value += 1;
+    activeIndex.value += 1
   }
-};
+}
 
 const assignRef = (
   el: Element | ComponentPublicInstance | null,
   index: number,
 ) => {
-  if (!el) return;
+  if (!el) return
   if (index === images.length - 1) {
-    lastThumbRef.value = el as HTMLButtonElement;
+    lastThumbRef.value = el as HTMLButtonElement
   } else if (index === 0) {
-    firstThumbRef.value = el as HTMLButtonElement;
+    firstThumbRef.value = el as HTMLButtonElement
   }
-};
+}
 </script>

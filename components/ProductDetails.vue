@@ -127,7 +127,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 import {
   SfButton,
   SfCounter,
@@ -144,20 +144,20 @@ import {
   SfIconRemove,
   useId,
   SfIconShoppingCartCheckout,
-} from "@storefront-ui/vue";
-import { clamp } from "@storefront-ui/shared";
-import { useCounter } from "@vueuse/core";
+} from '@storefront-ui/vue'
+import { clamp } from '@storefront-ui/shared'
+import { useCounter } from '@vueuse/core'
 
-const inputId = useId();
-const min = ref(1);
-const max = ref(999);
+const inputId = useId()
+const min = ref(1)
+const max = ref(999)
 const { count, inc, dec, set } = useCounter(1, {
   min: min.value,
   max: max.value,
-});
+})
 function handleOnChange(event: Event) {
-  const currentValue = (event.target as HTMLInputElement)?.value;
-  const nextValue = parseFloat(currentValue);
-  set(clamp(nextValue, min.value, max.value));
+  const currentValue = (event.target as HTMLInputElement)?.value
+  const nextValue = parseFloat(currentValue)
+  set(clamp(nextValue, min.value, max.value))
 }
 </script>
