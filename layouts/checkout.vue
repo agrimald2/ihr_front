@@ -4,7 +4,9 @@
     <NarrowContainer>
       <div class="px-4 md:px-0 mb-20">
         <div class="flex justify-between mt-8 mb-10 px-4 md:px-0">
-          <h1 class="font-bold typography-headline-3 md:typography-headline-2">{{ heading }}</h1>
+          <h1 class="font-bold typography-headline-3 md:typography-headline-2">
+            {{ heading }}
+          </h1>
           <SfButton
             tag="NuxtLink"
             to="#"
@@ -15,16 +17,21 @@
             <template #prefix>
               <SfIconArrowBack />
             </template>
-             home
+            home
           </SfButton>
-          <SfButton :tag="NuxtLink" :to="backHref" class="hidden md:flex" variant="tertiary">
+          <SfButton
+            :tag="NuxtLink"
+            :to="backHref"
+            class="hidden md:flex"
+            variant="tertiary"
+          >
             <template #prefix>
               <SfIconArrowBack />
             </template>
             categorias
           </SfButton>
         </div>
-        <span class="!flex justify-center my-40 h-24" v-if="isLoading && !cart">
+        <span v-if="isLoading && !cart" class="!flex justify-center my-40 h-24">
           <SfLoaderCircular size="3xl" />
         </span>
         <slot v-else />
@@ -35,5 +42,9 @@
 </template>
 
 <script setup lang="ts">
-import { SfButton, SfIconArrowBack, SfLoaderCircular } from '@storefront-ui/vue';
+import {
+  SfButton,
+  SfIconArrowBack,
+  SfLoaderCircular,
+} from "@storefront-ui/vue";
 </script>

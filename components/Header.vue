@@ -27,7 +27,11 @@
           class="flex shrink-0 ml-4 md:ml-0 text-white mr-auto md:mr-10 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
         >
           <picture>
-            <source srcset="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqPdirGbz8JZ3m3s4pGux_ogIuIRlPLFm4Lw&usqp=CAU" />
+            <source
+              srcset="
+                https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqPdirGbz8JZ3m3s4pGux_ogIuIRlPLFm4Lw&usqp=CAU
+              "
+            />
             <img
               src="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_sign_white.svg"
               alt="Sf Logo"
@@ -180,8 +184,8 @@
             class="text-white bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
             :aria-label="actionItem.ariaLabel"
             variant="tertiary"
-            @click="cartDropDownToggle"
             square
+            @click="cartDropDownToggle"
           >
             <template #prefix>
               <Component :is="actionItem.icon" />
@@ -305,48 +309,48 @@ import {
   SfIconMenu,
   SfInput,
   SfIconSearch,
-} from "@storefront-ui/vue"
-import { ref } from "vue"
-import { onClickOutside } from "@vueuse/core"
+} from "@storefront-ui/vue";
+import { ref } from "vue";
+import { onClickOutside } from "@vueuse/core";
 
 const {
   isOpen: isCategoryDropDownOpen,
   toggle: categoryDropDownToggle,
   close: categoriesModalClose,
-} = useDisclosure()
+} = useDisclosure();
 const {
   isOpen: isCartDrownOpen,
   toggle: cartDropDownToggle,
   close: cartModalClose,
-} = useDisclosure()
-const menuRef = ref()
-const drawerRef = ref()
-const cartRef = ref()
-const router = useRouter()
+} = useDisclosure();
+const menuRef = ref();
+const drawerRef = ref();
+const cartRef = ref();
+const router = useRouter();
 useTrapFocus(cartRef, {
   activeState: isCartDrownOpen,
   arrowKeysUpDown: true,
-})
+});
 
 useTrapFocus(drawerRef, {
   activeState: isCategoryDropDownOpen,
   arrowKeysUpDown: true,
   initialFocus: "container",
-})
+});
 onClickOutside(menuRef, () => {
-  close()
-})
+  close();
+});
 
-const inputValue = ref('')
+const inputValue = ref("");
 
 const search = () => {
   router.push({
-    path: '/search',
+    path: "/search",
     query: {
-      name: inputValue.value
-    }
-  })
-}
+      name: inputValue.value,
+    },
+  });
+};
 
 const actionItems = [
   {
@@ -361,11 +365,12 @@ const actionItems = [
     ariaLabel: "Log in",
     role: "login",
   },
-]
+];
 const bannerDetails = {
-  image: 'https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/watch.png',
-  title: 'New in designer watches',
-}
+  image:
+    "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/watch.png",
+  title: "New in designer watches",
+};
 
 const categoriesContent = [
   {
@@ -455,5 +460,5 @@ const categoriesContent = [
       },
     ],
   },
-]
+];
 </script>

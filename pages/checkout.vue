@@ -5,7 +5,7 @@
         class="credit-card w-full sm:w-auto shadow-lg mx-auto rounded-xl bg-white"
       >
         <header class="flex flex-col justify-center items-center">
-          <div class="relative" v-show="card === 'front'">
+          <div v-show="card === 'front'" class="relative">
             <img
               class="w-full h-auto"
               src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/svg-cards/card-visa-front.png"
@@ -37,7 +37,7 @@
               </div>
             </div>
           </div>
-          <div class="relative" v-show="card === 'back'">
+          <div v-show="card === 'back'" class="relative">
             <img
               class="w-full h-auto"
               src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/svg-cards/card-visa-back.png"
@@ -89,16 +89,16 @@
           </h1>
           <div class="my-3">
             <input
+              v-model="amount"
               type="number"
               class="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
               placeholder="Amount"
-              v-model="amount"
             />
           </div>
           <div class="my-3">
             <select
-              class="form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
               v-model="currency"
+              class="form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
             >
               <option value="" selected disabled>Currency</option>
               <option value="USD">USD</option>
@@ -111,22 +111,22 @@
           </h1>
           <div class="my-3">
             <input
+              v-model="cardData.cardholder"
               type="text"
               class="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
               placeholder="Card holder"
               maxlength="22"
-              v-model="cardData.cardholder"
             />
           </div>
           <div class="my-3">
             <input
+              v-model="cardData.cardNumber"
               type="text"
               class="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
               placeholder="Card number"
-              v-model="cardData.cardNumber"
+              maxlength="19"
               @keydown="format"
               @keyup="format"
-              maxlength="19"
             />
           </div>
           <div class="my-3 flex flex-col">
@@ -138,8 +138,8 @@
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <select
-                class="form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
                 v-model="cardData.expired.month"
+                class="form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
               >
                 <option value="" selected disabled>MM</option>
                 <option value="01">01</option>
@@ -156,8 +156,8 @@
                 <option value="12">12</option>
               </select>
               <select
-                class="form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
                 v-model="cardData.expired.year"
+                class="form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
               >
                 <option value="" selected disabled>YY</option>
                 <option value="24">2024</option>
@@ -168,11 +168,11 @@
                 <option value="29">2029</option>
               </select>
               <input
+                v-model="cardData.securityCode"
                 type="text"
                 class="block w-full col-span-2 px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
                 placeholder="Security code"
                 maxlength="4"
-                v-model="cardData.securityCode"
                 @focus="card = 'back'"
                 @blur="card = 'front'"
               />
@@ -264,7 +264,7 @@ export default {
       this.pay();
     },
     async pay() {
-      let card_number = this.noSpaces();
+      const card_number = this.noSpaces();
       try {
         // generate token to perform the charge
         // const tokenResponse = await new Promise((resolve, reject) => {
@@ -302,8 +302,7 @@ export default {
         const auth = { username: apiKey, password: "" };
         const headers = {
           withCredentials: true,
-          crossOriginIsolated:"same-origin",
-
+          crossOriginIsolated: "same-origin",
         };
         // const paymentResponse = await axios
         //   .post(

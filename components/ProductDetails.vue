@@ -6,12 +6,20 @@
       <SfIconSell size="sm" class="mr-1.5" />
       Sale
     </div>
-    <h1 class="mb-1 font-bold typography-headline-4">Mini Foldable Drone with HD Camera FPV Wifi RC Quadcopter</h1>
+    <h1 class="mb-1 font-bold typography-headline-4">
+      Mini Foldable Drone with HD Camera FPV Wifi RC Quadcopter
+    </h1>
     <strong class="block font-bold typography-headline-3">$2,345.99</strong>
     <div class="inline-flex items-center mt-4 mb-2">
       <SfRating size="xs" :value="3" :max="5" />
       <SfCounter class="ml-1" size="xs">123</SfCounter>
-      <SfLink href="#" variant="secondary" class="ml-2 text-xs text-neutral-500"> 123 reviews </SfLink>
+      <SfLink
+        href="#"
+        variant="secondary"
+        class="ml-2 text-xs text-neutral-500"
+      >
+        123 reviews
+      </SfLink>
     </div>
     <ul class="mb-4 font-normal typography-text-sm">
       <li>HD Pictures & Videos and FPV Function</li>
@@ -90,7 +98,9 @@
       <SfIconPackage size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
       <p class="text-sm">
         Free shipping, arrives by Thu, Apr 7. Want it faster?
-        <SfLink href="#" variant="secondary" class="mx-1"> Add an address </SfLink>
+        <SfLink href="#" variant="secondary" class="mx-1">
+          Add an address
+        </SfLink>
         to see options
       </p>
     </div>
@@ -98,11 +108,16 @@
       <SfIconWarehouse size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
       <p class="text-sm">
         Pickup not available at your shop.
-        <SfLink href="#" variant="secondary" class="ml-1"> Check availability nearby </SfLink>
+        <SfLink href="#" variant="secondary" class="ml-1">
+          Check availability nearby
+        </SfLink>
       </p>
     </div>
     <div class="flex mt-4">
-      <SfIconSafetyCheck size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
+      <SfIconSafetyCheck
+        size="sm"
+        class="flex-shrink-0 mr-1 text-neutral-500"
+      />
       <p class="text-sm">
         Free 30-days returns.
         <SfLink href="#" variant="secondary" class="ml-1"> Details </SfLink>
@@ -112,7 +127,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 import {
   SfButton,
   SfCounter,
@@ -129,14 +144,17 @@ import {
   SfIconRemove,
   useId,
   SfIconShoppingCartCheckout,
-} from '@storefront-ui/vue';
-import { clamp } from '@storefront-ui/shared';
-import { useCounter } from '@vueuse/core';
+} from "@storefront-ui/vue";
+import { clamp } from "@storefront-ui/shared";
+import { useCounter } from "@vueuse/core";
 
 const inputId = useId();
 const min = ref(1);
 const max = ref(999);
-const { count, inc, dec, set } = useCounter(1, { min: min.value, max: max.value });
+const { count, inc, dec, set } = useCounter(1, {
+  min: min.value,
+  max: max.value,
+});
 function handleOnChange(event: Event) {
   const currentValue = (event.target as HTMLInputElement)?.value;
   const nextValue = parseFloat(currentValue);

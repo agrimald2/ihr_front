@@ -23,9 +23,21 @@
         :aria-label="title"
         href="#"
       />
-      <div :class="['flex justify-between overflow-hidden grow', { 'flex-row-reverse': reverse }]">
-        <div class="flex flex-col justify-center items-start p-6 lg:p-10 max-w-1/2">
-          <p :class="['uppercase typography-text-xs block font-bold tracking-widest', subtitleClass]">
+      <div
+        :class="[
+          'flex justify-between overflow-hidden grow',
+          { 'flex-row-reverse': reverse },
+        ]"
+      >
+        <div
+          class="flex flex-col justify-center items-start p-6 lg:p-10 max-w-1/2"
+        >
+          <p
+            :class="[
+              'uppercase typography-text-xs block font-bold tracking-widest',
+              subtitleClass,
+            ]"
+          >
             {{ subtitle }}
           </p>
           <h2 :class="['mb-4 mt-2 font-bold typography-display-3', titleClass]">
@@ -43,38 +55,41 @@
 </template>
 
 <script lang="ts" setup>
-import { SfButton } from '@storefront-ui/vue';
+import { SfButton } from "@storefront-ui/vue";
 
 const displayDetails = [
   {
-    image: 'https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/display.png',
-    title: 'Sunny Days Ahead',
-    subtitle: 'Be inspired',
-    description: 'Step out in style with our sunglasses collection',
-    buttonText: 'Discover now',
+    image:
+      "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/display.png",
+    title: "Sunny Days Ahead",
+    subtitle: "Be inspired",
+    description: "Step out in style with our sunglasses collection",
+    buttonText: "Discover now",
     reverse: false,
-    backgroundColor: 'bg-negative-200',
-    titleClass: 'md:typography-display-2',
-    subtitleClass: 'md:typography-headline-6',
-    descriptionClass: 'md:typography-text-lg',
+    backgroundColor: "bg-negative-200",
+    titleClass: "md:typography-display-2",
+    subtitleClass: "md:typography-headline-6",
+    descriptionClass: "md:typography-text-lg",
   },
   {
-    image: 'https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/display-2.png',
-    title: 'Pack it Up',
-    subtitle: 'Be active',
-    description: 'Explore the great outdoors with our backpacks',
-    buttonText: 'Discover now',
+    image:
+      "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/display-2.png",
+    title: "Pack it Up",
+    subtitle: "Be active",
+    description: "Explore the great outdoors with our backpacks",
+    buttonText: "Discover now",
     reverse: true,
-    backgroundColor: 'bg-warning-200',
+    backgroundColor: "bg-warning-200",
   },
   {
-    image: 'https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/display-3.png',
-    title: 'Fresh and Bold',
-    subtitle: 'New collection',
-    description: 'Add a pop up color to your outfit',
-    buttonText: 'Discover now',
+    image:
+      "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/display-3.png",
+    title: "Fresh and Bold",
+    subtitle: "New collection",
+    description: "Add a pop up color to your outfit",
+    buttonText: "Discover now",
     reverse: false,
-    backgroundColor: 'bg-secondary-200',
+    backgroundColor: "bg-secondary-200",
   },
 ];
 </script>

@@ -27,21 +27,21 @@
 </template>
 
 <script lang="ts" setup>
-import { fetchProducts, fetchCategories } from "~/api/product/[productSlug]"
-import type { Product, Category } from "~/types"
+import { fetchProducts, fetchCategories } from "~/api/product/[productSlug]";
+import type { Product, Category } from "~/types";
 
-const route = useRoute()
-const products = ref<Product[]>([])
-const categories = ref<Category[]>([])
+const route = useRoute();
+const products = ref<Product[]>([]);
+const categories = ref<Category[]>([]);
 
 try {
-  const productsData = await fetchProducts()
-  products.value = productsData.results
-  console.log("Products: ", products.value)
-  const categoryData = await fetchCategories()
-  categories.value = categoryData.results
-  console.log("Categories: ", categories.value)
+  const productsData = await fetchProducts();
+  products.value = productsData.results;
+  console.log("Products: ", products.value);
+  const categoryData = await fetchCategories();
+  categories.value = categoryData.results;
+  console.log("Categories: ", categories.value);
 } catch (error) {
-  console.error("Failed to fetch products:", error)
+  console.error("Failed to fetch products:", error);
 }
 </script>
