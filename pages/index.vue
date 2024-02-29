@@ -4,7 +4,7 @@
       <UiBanners />
     </div>
     <div class="w-full min-h-[60vh] justify-center items-center bg-gray-50">
-      <ProductSection />
+      <ProductSection :items="products"/>
     </div>
   </div>
 </template>
@@ -22,13 +22,9 @@ const goToProduct = (id: any) => {
 try {
   const productsData = await fetchProducts()
   products.value = productsData.results
-  console.log('Products: ', products.value)
   const categoryData = await fetchCategories()
   categories.value = categoryData.results
-  console.log('Categories: ', categories.value)
 } catch (error) {
-  console.error('Failed to fetch products:', error)
+  console.error('Failed to fetch products and categories:', error)
 }
-// onMounted(async () => {
-// })
 </script>
