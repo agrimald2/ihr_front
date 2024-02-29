@@ -1,16 +1,13 @@
 <template>
-  <div class="wrapper flex justify-center px-4">
-    <div class="max-w-screen-lg w-full">
-
-      <div class="main-content">
-        <UiBanners/>
-        <ProductSlider :items="products" @go-to-product="goToProduct(id)"/>
-      </div>
-
+  <div class="flex flex-col items-center w-full">
+    <div class="w-full bg-white/80">
+      <UiBanners />
+    </div>
+    <div class="w-full min-h-[60vh] justify-center items-center bg-gray-50">
+        <ProductSection/>
     </div>
   </div>
 </template>
-
 <script lang="ts" setup>
 import { fetchProducts, fetchCategories } from '~/api/product/[productSlug]'
 import type { Product, Category } from '~/types'
