@@ -28,14 +28,11 @@
         >
           <picture>
             <source
-              srcset="
-                https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqPdirGbz8JZ3m3s4pGux_ogIuIRlPLFm4Lw&usqp=CAU
-              "
+              srcset="/images/HHlogo.png"
             />
             <img
-              src="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/vsf_logo_sign_white.svg"
               alt="Sf Logo"
-              class="w-8 h-8 lg:w-[10rem] lg:h-[4rem]"
+              class="w-8 h-8 lg:w-[8rem] lg:h-[5rem]"
             />
           </picture>
         </a>
