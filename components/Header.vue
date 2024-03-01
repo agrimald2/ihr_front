@@ -324,7 +324,7 @@ const {
 const menuRef = ref()
 const drawerRef = ref()
 const cartRef = ref()
-const router = useRouter()
+
 useTrapFocus(cartRef, {
   activeState: isCartDrownOpen,
   arrowKeysUpDown: true,
@@ -344,7 +344,7 @@ const inputValue = ref('')
 const search = () => {
   const emitter = useEmitter()
   emitter.emit('search-products')
-  router.push({
+  navigateTo({
     path: '/search',
     query: {
       name: inputValue.value,

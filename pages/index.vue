@@ -15,10 +15,6 @@ import type { Product, Category } from '~/types'
 const products = ref<Product[]>([])
 const categories = ref<Category[]>([])
 
-const goToProduct = (id: any) => {
-  this.$router.push(`/products/${id}`)
-}
-
 try {
   const productsData = await fetchProducts()
   products.value = productsData.results

@@ -2,7 +2,7 @@
   <section
     class="w-full flex flex-wrap justify-center gap-y-8 gap-x-8 mt-5 mb-5 px-10"
   >
-    <div v-for="item in items" :key="item.id">
+    <div v-for="item in items" :key="item.id" @click="goToProduct(item.id)">
       <div
         class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
       >
@@ -50,12 +50,18 @@
   </section>
 </template>
 <script lang="ts" setup>
-const props = defineProps({
+import { useEmitter } from '~~/composables/useEmitter'
+
+defineProps({
   items: {
     type: Object,
     default: {}
   }
 })
 
+const goToProduct = function (id: string) {
+  navigateTo(`/products/${id}`)
+  console.log('event sent')
+}
 </script>
 
