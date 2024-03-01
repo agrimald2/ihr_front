@@ -1,10 +1,6 @@
 <template>
-  <div class="text-center p-5">
-    <h1 class="font-bold text-4xl mb-4">Titulo Llamativo</h1>
-    <h1 class="text-3xl">Grimmy es un csm</h1>
-  </div>
   <section
-    class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-5 mb-5"
+    class="w-full flex flex-wrap justify-center gap-y-8 gap-x-8 mt-5 mb-5 px-10"
   >
     <div v-for="item in items" :key="item.id">
       <div
