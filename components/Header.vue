@@ -312,6 +312,7 @@ import {
 } from '@storefront-ui/vue'
 import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
+import { useEmitter } from '~~/composables/useEmitter'
 
 const {
   isOpen: isCategoryDropDownOpen,
@@ -344,6 +345,8 @@ onClickOutside(menuRef, () => {
 const inputValue = ref('')
 
 const search = () => {
+  const emitter = useEmitter()
+  emitter.emit('search-products')
   router.push({
     path: '/search',
     query: {

@@ -31,12 +31,18 @@ import { fetchProducts, fetchCategories } from '~/api/product/[productSlug]'
 import type { Product, Category } from '~/types'
 
 const route = useRoute()
+const emitter = useEmitter()
 const productsFound = ref<Product[]>([])
 
-try {
-  const response = await fetchProducts(route.query)
-  productsFound.value = response.results
-} catch (error) {
-  console.error('Failed to fetch products:', error)
+const searchProducts = async () => {
+    try {
+    const response = await fetchProducts(route.query)
+    productsFound.value = response.results
+  } catch (error) {
+    console.error('Failed to fetch products:', error)
+  }
 }
+
+emitter.on('search-products', () => searchProducts())
+
 </script>
