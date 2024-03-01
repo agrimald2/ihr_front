@@ -1,4 +1,5 @@
 const BASE_URL = 'https://thr-backend.camionerosperuanos.org/api/'
+import { objQueryToString } from "../utlis"
 
 function fakeAsyncEndpoint(data: any, delay: number = 1000): Promise<Response> {
   return new Promise((resolve) => {
@@ -14,9 +15,17 @@ function fakeAsyncEndpoint(data: any, delay: number = 1000): Promise<Response> {
   })
 }
 
-const fetchProducts = async () => {
+const fetchProducts = async (query: object={}) => {
+  const isSendingQuery = Object.keys(query).length > 0
+  let fullUrl = ''
+  if (isSendingQuery) {
+    const queryString = objQueryToString(query)
+    fullUrl = `${BASE_URL}product?${queryString}`
+  } else {
+    fullUrl = `${BASE_URL}product`
+  }
   try {
-    const response = await fetch(`${BASE_URL}product`)
+    const response = await fetch(fullUrl)
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }

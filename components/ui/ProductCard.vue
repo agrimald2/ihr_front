@@ -5,9 +5,9 @@
       data-testid="product-card"
     >
       <div class="relative">
-        <SfLink href="#" class="block">
+        <SfLink class="block">
           <img
-            :src="product.images[0]"
+            :src="product.images?.length ? product.images[0] : ''"
             :alt="product.brand"
             class="object-cover rounded-md aspect-square w-full h-full"
             width="190"
