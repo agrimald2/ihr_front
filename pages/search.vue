@@ -43,6 +43,12 @@ const searchProducts = async () => {
   }
 }
 
+onBeforeMount(() => {
+  if (route.query) {
+    searchProducts()
+  }
+})
+
 emitter.on('search-products', () => searchProducts())
 
 </script>
