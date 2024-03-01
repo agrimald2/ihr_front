@@ -15,13 +15,14 @@
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
     "nuxt": "3.0.0",
+    "pinia": "^2.1.7",
     "vue": "3.4.20",
     "vue-router": "4.3.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
-    "@nuxtjs/i18n": "^8.1.1",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "@storefront-ui/vue": "^2.6.0",
     "@typescript-eslint/eslint-plugin": "^7.1.0",

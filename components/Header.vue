@@ -171,10 +171,13 @@
             </template>
           </SfInput>
         </form>
-        <nav
+        <!-- <nav
           class="flex flex-nowrap justify-end items-center md:ml-10 gap-x-1"
           aria-label="SF Navigation"
         >
+          <div>
+            {{ cartBadge }}
+          </div>
           <SfButton
             v-for="actionItem in actionItems"
             :key="actionItem.ariaLabel"
@@ -258,7 +261,11 @@
               </SfDrawer>
             </transition>
           </SfButton>
-        </nav>
+        </nav> -->
+        <SfButton class="relative ml-10" square @click="navigateTo('/checkout_2')">
+          <SfIconShoppingCart />
+          <SfBadge :content="cartBadge" />
+        </SfButton>
       </div>
       <form
         role="search"
@@ -306,10 +313,12 @@ import {
   SfIconMenu,
   SfInput,
   SfIconSearch,
+  SfBadge
 } from '@storefront-ui/vue'
 import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { useEmitter } from '~~/composables/useEmitter'
+import { useCartStore } from '~/store/cart'
 
 const {
   isOpen: isCategoryDropDownOpen,
@@ -351,6 +360,12 @@ const search = () => {
     },
   })
 }
+
+const cartBadge = ref(0)
+useEmitter().on('added-to-cart', function (){
+  const productsCount = useCartStore().$state.products.length
+  if (productsCount > 0) cartBadge.value++
+})
 
 const actionItems = [
   {

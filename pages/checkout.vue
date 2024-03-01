@@ -194,7 +194,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
   data() {
@@ -281,9 +280,10 @@ export default {
 
         // if (this.openpay.token) {
         // payment in OpenPay
+        debugger
         console.log(this.openpay.token, 'Token obtenido:')
         const data = {
-          card_number: '4111111111111111',
+          data_openpay_card: '4111111111111111',
           holder_name: 'Juan Perez Ramirez',
           expiration_year: '24',
           expiration_month: '12',
@@ -304,24 +304,26 @@ export default {
           withCredentials: true,
           crossOriginIsolated: 'same-origin',
         }
-        // const paymentResponse = await axios
-        //   .post(
-        //     "https://sandbox-api.openpay.pe/v1/mrvfi7f4rsnkp9egkous/tokens",
-        //     data,
-        //     {
-        //       headers,
-        //     }
-        //   )
+        const paymentResponse = await fetch('https://sandbox-api.openpay.pe/v1/mrvfi7f4rsnkp9egkous/tokens', {
+          method: 'POST',
+          mode: 'no-cors',
+          cache: 'no-cache',
+          credentials: 'omit',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+          body: JSON.stringify(data)
+        }).then((response) => {
+          console.log("Respuesta exitosa:", response.data);
+        })
+        // const paymentResponse = await fetch('https://thr-backend.camionerosperuanos.org/api/product', {
+        //     headers,
+        //   })
         //   .then((response) => {
-        //     console.log("Respuesta exitosa:", response.data);
-        //   });
-        const paymentResponse = await axios
-          .get('https://thr-backend.camionerosperuanos.org/api/product', {
-            headers,
-          })
-          .then((response) => {
-            console.log('Respuesta exitosa:', response.data)
-          })
+        //     console.log('Respuesta exitosa:', response.data)
+        //   })
         alert(`You did it ${this.cardData.cardholder}.`)
         console.log(paymentResponse)
         // }

@@ -74,7 +74,7 @@
             <strong class="text-neutral-900">{{ max }}</strong> in stock
           </p>
         </div>
-        <SfButton size="lg" class="w-full xs:ml-4">
+        <SfButton size="lg" class="w-full xs:ml-4" @click="addToCart()">
           <template #prefix>
             <SfIconShoppingCart size="sm" />
           </template>
@@ -127,7 +127,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import {
   SfButton,
   SfCounter,
@@ -147,6 +146,34 @@ import {
 } from '@storefront-ui/vue'
 import { clamp } from '@storefront-ui/shared'
 import { useCounter } from '@vueuse/core'
+import { useCartStore } from '~/store/cart'
+
+const product = ref({
+  brand: "Brand1",
+  category: 2,
+  code: "PROD001",
+  color: [],
+  composition: "Material1",
+  created_at: "2024-02-28T00:55:17Z",
+  description: "Description1",
+  gender: 0,
+  id: 2,
+  manufacturer: "Manufacturer1",
+  name: "Product1",
+  name_ch: "产品1",
+  name_fr: "Nom1",
+  name_sp: "Nombre1",
+  name_ua: "Назва1",
+  price: "49.99",
+  size: [],
+  store: 2,
+  subcategory: 1,
+  updated_at: "2024-02-28T00:55:17Z"
+})
+
+const addToCart = () => {
+  useCartStore().addToCart(product.value)
+}
 
 const inputId = useId()
 const min = ref(1)
