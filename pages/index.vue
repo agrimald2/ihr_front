@@ -4,6 +4,7 @@
       <UiBanners />
     </div>
     <div class="w-full min-h-[60vh] justify-center items-center bg-gray-50 pt-10">
+      <CategorySection :items="categories"/>
       <ProductSection :items="products"/>
     </div>
   </div>
