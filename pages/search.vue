@@ -34,9 +34,9 @@ const route = useRoute()
 const emitter = useEmitter()
 const productsFound = ref<Product[]>([])
 
-const searchProducts = async () => {
+const searchProducts = async (query: object) => {
     try {
-    const response = await fetchProducts(route.query)
+    const response = await fetchProducts(query)
     productsFound.value = response.results
   } catch (error) {
     console.error('Failed to fetch products:', error)
@@ -45,10 +45,10 @@ const searchProducts = async () => {
 
 onBeforeMount(() => {
   if (route.query) {
-    searchProducts()
+    searchProducts(route.query)
   }
 })
 
-emitter.on('search-products', () => searchProducts())
+emitter.on('search-products', (query: string) => searchProducts({ name: query }))
 
 </script>

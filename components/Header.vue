@@ -333,6 +333,7 @@ const {
 const menuRef = ref()
 const drawerRef = ref()
 const cartRef = ref()
+const route = useRoute()
 
 useTrapFocus(cartRef, {
   activeState: isCartDrownOpen,
@@ -352,13 +353,22 @@ const inputValue = ref('')
 
 const search = () => {
   const emitter = useEmitter()
-  emitter.emit('search-products')
-  navigateTo({
-    path: '/search',
-    query: {
-      name: inputValue.value,
-    },
-  })
+  emitter.emit('search-products', inputValue.value)
+
+  if (route.path !== 'search') {
+    navigateTo({
+      path: '/search',
+      query: {
+        name: inputValue.value,
+      },
+    })
+  } else {
+    navigateTo({
+      query: {
+        name: inputValue.value
+      }
+    })
+  }
 }
 
 const cartBadge = ref(0)
