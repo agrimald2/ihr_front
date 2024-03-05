@@ -262,7 +262,7 @@
             </transition>
           </SfButton>
         </nav> -->
-        <SfButton class="relative ml-10" square @click="navigateTo('/checkout_2')">
+        <SfButton class="relative ml-10" square @click="navigateTo('/cart')">
           <SfIconShoppingCart />
           <SfBadge :content="cartBadge" />
         </SfButton>

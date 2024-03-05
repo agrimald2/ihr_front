@@ -1,17 +1,8 @@
 <template>
-  <NuxtLayout
-    name="checkout"
-    :back-href="paths.category"
-    back-label-desktop="carito de compra"
-    :back-label-mobile="atras"
-    :heading="carito"
-  >
+ <div class="flex flex-col justify-center items-center mt-8 mb-8">
     <CartPageContent />
-  </NuxtLayout>
+ </div>
 </template>
 
-<script setup lang="ts">
-definePageMeta({
-  layout: false,
-})
+<script lang="ts" setup>
 </script>
