@@ -18,6 +18,7 @@
           class="w-full"
           size="sm"
           :input-props="{ value, disabled: !isAvailable }"
+          @click="handleOnclick(label, value, isAvailable)"
         >
           {{ label }}
         </SfChip>
@@ -46,4 +47,13 @@ const chipSizes = ref([
   { id: 's11', label: '11.5', value: '11.5', isAvailable: true },
   { id: 's12', label: '12', value: '12', isAvailable: true },
 ])
+const handleOnclick = (label: string, value: string, isAvailable: string) => {
+  const emitter = useEmitter()
+  const { sharedMap, convertMapToObject, addFieldToMap } = useSharedMap();
+  addFieldToMap(sharedMap, 'size',  value);
+  if (value) {
+    emitter.emit('search-products',convertMapToObject(sharedMap))
+  }
+  console.log('Valor seleccionado:',value)
+}
 </script>

@@ -49,6 +49,6 @@ onBeforeMount(() => {
   }
 })
 
-emitter.on('search-products', (query: string) => searchProducts({ name: query }))
+emitter.on('search-products', (query: object) => searchProducts(query))
 
 </script>

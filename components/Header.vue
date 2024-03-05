@@ -319,7 +319,7 @@ import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { useEmitter } from '~~/composables/useEmitter'
 import { useCartStore } from '~/store/cart'
-
+import { useSharedMap } from '~/composables/filter';
 const {
   isOpen: isCategoryDropDownOpen,
   toggle: categoryDropDownToggle,
@@ -352,8 +352,10 @@ onClickOutside(menuRef, () => {
 const inputValue = ref('')
 
 const search = () => {
+  const { sharedMap, convertMapToObject, addFieldToMap } = useSharedMap();
+  addFieldToMap(sharedMap, 'name',  inputValue.value);
   const emitter = useEmitter()
-  emitter.emit('search-products', inputValue.value)
+  emitter.emit('search-products', convertMapToObject(sharedMap))
 
   if (route.path !== 'search') {
     navigateTo({

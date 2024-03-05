@@ -14,13 +14,14 @@
       size="sm"
       tag="label"
       class="px-1.5 bg-transparent hover:bg-transparent"
-      :selected="isItemActive(value)"
+      :selected="isItemActive(label)"
     >
       <template #prefix>
         <input
           v-model="selectedValues"
-          :value="value"
+          :value="label"
           class="appearance-none peer"
+          @click="handleOnclick(label)"
           type="checkbox"
         />
         <span
@@ -39,6 +40,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useSharedMap } from '~/composables/filter';
 import {
   SfAccordionItem,
   SfCounter,
@@ -89,5 +91,15 @@ const open = ref(true)
 const selectedValues = ref<string[]>([])
 const isItemActive = (val: string) => {
   return selectedValues.value?.includes(val)
+}
+function handleOnclick(value:String) {
+  const route = useRoute()
+  const emitter = useEmitter()
+  const { sharedMap, convertMapToObject, addFieldToMap } = useSharedMap();
+  addFieldToMap(sharedMap, 'color',  value);
+  if (value) {
+    emitter.emit('search-products',convertMapToObject(sharedMap))
+  }
+  console.log('Valor seleccionado:', value)
 }
 </script>
