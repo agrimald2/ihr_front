@@ -371,11 +371,7 @@ const search = () => {
   }
 }
 
-const cartBadge = ref(0)
-useEmitter().on('added-to-cart', function (){
-  const productsCount = useCartStore().$state.products.length
-  if (productsCount > 0) cartBadge.value++
-})
+const cartBadge = computed(() => useCartStore().productCount)
 
 const actionItems = [
   {

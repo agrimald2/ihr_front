@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from "nuxt/config"
 
 export default defineNuxtConfig({
+  ssr: false,
   app: {
     head: {
       charset: 'utf-8',

@@ -25,7 +25,7 @@
         variant="secondary"
         class="no-underline typography-text-sm sm:typography-text-lg"
       >
-        Smartwatch Fitness Tracker
+       {{ item.name }}
       </SfLink>
       <div class="my-2 sm:mb-0">
         <ul
@@ -33,18 +33,19 @@
         >
           <li>
             <span class="mr-1">Size:</span>
-            <span class="font-medium">6.5</span>
+            <span class="font-medium"> {{ item.size }}</span>
           </li>
           <li>
             <span class="mr-1">Color:</span>
-            <span class="font-medium">Red</span>
+            <span class="font-medium">{{ item.color }}</span>
           </li>
         </ul>
       </div>
       <div class="items-center sm:mt-auto sm:flex">
         <span
           class="font-bold sm:ml-auto sm:order-1 typography-text-sm sm:typography-text-lg"
-          >$2,345.99
+          >
+          {{  item.price }}
         </span>
         <div class="flex items-center justify-between mt-4 sm:mt-0">
           <div class="flex border border-neutral-300 rounded-md">
@@ -108,6 +109,9 @@ import {
 import { clamp } from '@storefront-ui/shared'
 import { useCounter } from '@vueuse/core'
 
+const props = defineProps({
+  item: { type: Object, default: {} }
+})
 const min = ref(1)
 const max = ref(10)
 const inputId = useId()
