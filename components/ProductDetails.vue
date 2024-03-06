@@ -7,10 +7,10 @@
       Sale
     </div>
     <h1 class="mb-1 font-bold typography-headline-4">
-      Mini Foldable Drone with HD Camera FPV Wifi RC Quadcopter
+      {{ props.product.name }}
     </h1>
-    <strong class="block font-bold typography-headline-3">$2,345.99</strong>
-    <div class="inline-flex items-center mt-4 mb-2">
+    <strong class="block font-bold typography-headline-3">${{ props.product.price }}</strong>
+    <!-- <div class="inline-flex items-center mt-4 mb-2">
       <SfRating size="xs" :value="3" :max="5" />
       <SfCounter class="ml-1" size="xs">123</SfCounter>
       <SfLink
@@ -20,21 +20,22 @@
       >
         123 reviews
       </SfLink>
-    </div>
+    </div> -->
     <ul class="mb-4 font-normal typography-text-sm">
-      <li>HD Pictures & Videos and FPV Function</li>
+      <p>{{ product.description }}</p>
+      <!-- <li>HD Pictures & Videos and FPV Function</li>
       <li>Intelligent Voice Control</li>
       <li>Multiple Fun Flights</li>
       <li>Easy to Use</li>
-      <li>Foldable Design & Double Flight Time</li>
+      <li>Foldable Design & Double Flight Time</li> -->
     </ul>
-    <div class="py-4 mb-4 border-gray-200 border-y">
-      <div
+    <div class="py-4 mb-4 min-w-96 border-gray-200 border-y">
+      <!-- <div
         class="bg-primary-100 text-primary-700 flex justify-center gap-1.5 py-1.5 typography-text-sm items-center mb-4 rounded-md"
       >
         <SfIconShoppingCartCheckout />
         1 in cart
-      </div>
+      </div> -->
       <div class="items-start xs:flex">
         <div class="flex flex-col items-stretch xs:items-center xs:inline-flex">
           <div class="flex border border-neutral-300 rounded-md">
@@ -70,9 +71,9 @@
               <SfIconAdd />
             </SfButton>
           </div>
-          <p class="self-center mt-1 mb-4 text-xs text-neutral-500 xs:mb-0">
+          <!-- <p class="self-center mt-1 mb-4 text-xs text-neutral-500 xs:mb-0">
             <strong class="text-neutral-900">{{ max }}</strong> in stock
-          </p>
+          </p> -->
         </div>
         <SfButton size="lg" class="w-full xs:ml-4" @click="addToCart()">
           <template #prefix>
@@ -81,7 +82,7 @@
           Add to cart
         </SfButton>
       </div>
-      <div class="flex justify-center mt-4 gap-x-4">
+      <!-- <div class="flex justify-center mt-4 gap-x-4">
         <SfButton size="sm" variant="tertiary">
           <template #prefix>
             <SfIconCompareArrows size="sm" />
@@ -92,9 +93,9 @@
           <SfIconFavorite size="sm" />
           Add to list
         </SfButton>
-      </div>
+      </div> -->
     </div>
-    <div class="flex first:mt-4">
+    <!-- <div class="flex first:mt-4">
       <SfIconPackage size="sm" class="flex-shrink-0 mr-1 text-neutral-500" />
       <p class="text-sm">
         Free shipping, arrives by Thu, Apr 7. Want it faster?
@@ -122,7 +123,7 @@
         Free 30-days returns.
         <SfLink href="#" variant="secondary" class="ml-1"> Details </SfLink>
       </p>
-    </div>
+    </div> -->
   </section>
 </template>
 
@@ -148,31 +149,15 @@ import { clamp } from '@storefront-ui/shared'
 import { useCounter } from '@vueuse/core'
 import { useCartStore } from '~/store/cart'
 
-const product = ref({
-  brand: "Brand1",
-  category: 2,
-  code: "PROD001",
-  color: [],
-  composition: "Material1",
-  created_at: "2024-02-28T00:55:17Z",
-  description: "Description1",
-  gender: 0,
-  id: 2,
-  manufacturer: "Manufacturer1",
-  name: "Product1",
-  name_ch: "产品1",
-  name_fr: "Nom1",
-  name_sp: "Nombre1",
-  name_ua: "Назва1",
-  price: "49.99",
-  size: [],
-  store: 2,
-  subcategory: 1,
-  updated_at: "2024-02-28T00:55:17Z"
+const props = defineProps({
+  product: {
+    type: Object,
+    required: true
+  }
 })
 
 const addToCart = () => {
-  useCartStore().addToCart(product.value)
+  useCartStore().addToCart(props.product, count.value)
 }
 
 const inputId = useId()

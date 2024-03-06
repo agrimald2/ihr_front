@@ -20,7 +20,8 @@ export const useCartStore = defineStore('cart', () => {
       const existingProductIndex = products.value.findIndex((p) => p.id === product.id)
       products.value[existingProductIndex].quantity += quantity
     } else {
-      products.value.push({ ...product, count: quantity})
+      console.log('count :', quantity)
+      products.value.push({ ...product, quantity: quantity})
     }
     saveProductsToLocalStorage()
     useEmitter().emit('added-to-cart')
