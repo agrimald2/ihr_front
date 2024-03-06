@@ -5,7 +5,6 @@ import { useEmitter  } from '~~/composables/useEmitter'
 export const useCheckoutStore = defineStore('checkout', () => {
   const shippingInfo = ref({})
   const paymentInfo = ref({})
-  const cartInfo = ref({})
 
   const updateShippingInfo = (info: any) => {
     shippingInfo.value = info
@@ -15,15 +14,9 @@ export const useCheckoutStore = defineStore('checkout', () => {
     paymentInfo.value = info
   }
 
-  const updateCartInfo = (info: any) => {
-    cartInfo.value = info
-  }
-
   return {
     shippingInfo,
     paymentInfo,
-    cartInfo,
-    updateCartInfo,
     updatePaymentInfo,
     updateShippingInfo
   }

@@ -33,6 +33,13 @@ export const useCartStore = defineStore('cart', () => {
     // Add any additional logic here
   }
 
+  const cartInfo = computed(() => {
+    return products.value.map((p) => ({
+      product_id: p.id,
+      quantity: p.quantity
+    }))
+  })
+
   const productCount = computed(() => products.value.length)
 
   return {
@@ -40,5 +47,6 @@ export const useCartStore = defineStore('cart', () => {
     productCount,
     addToCart,
     removeFromCart,
+    cartInfo
   }
 })

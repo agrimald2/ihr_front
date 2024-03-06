@@ -20,9 +20,9 @@
 <script setup>
 import { SfButton } from '@storefront-ui/vue'
 import { useCheckoutStore } from '~/store/checkout'
+import { useCartStore } from '~~/store/cart'
 
 const shippingInfo = useCheckoutStore().shippingInfo
-const paymentInfo = useCheckoutStore().paymentInfo
 const cartInfo = useCheckoutStore().cartInfo
 
 const currentStep = ref(1)
@@ -44,55 +44,46 @@ const goNext = () => {
   }
   currentStep.value++
 }
- const datafake = {
-          card_number: "4111111111111111",
-          holder_name: "Juan Perez Ramirez",
-          expiration_year: "24",
-          expiration_month: "12",
-          cvv2: "110",
-          address: {
-            city: "Querétaro",
-            country_code: "MX",
-            postal_code: "76900",
-            line1: "Av 5 de Febrero",
-            line2: "Roble 207",
-            line3: "col carrillo",
-            state: "Queretaro",
-          },
-        };
+
+const BASE_URL = 'https://thr-backend.camionerosperuanos.org/api/'
+const fetchPay = (token) => {
+  const cartInfo = useCartStore().cartInfo
+  fetch(`${BASE_URL}sale`, {
+    method: 'POST',
+    body: JSON.stringify({
+      "token_id": token,
+      "cart_info": cartInfo,
+      "method": 0
+    })
+  })
+}
+
 const callPayApi = () => {
+  const paymentInfo = useCheckoutStore().paymentInfo
+  const payload = {
+  "card_number": paymentInfo.card_number,
+  "holder_name": paymentInfo.name_on_card,
+  "expiration_year": paymentInfo.expiration_year,
+  "expiration_month": paymentInfo.expiration_month,
+  "cvv2": paymentInfo.security_code
+  }
   fetch('https://sandbox-api.openpay.pe/v1/mrvfi7f4rsnkp9egkous/tokens', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
       'Authorization': 'Basic ' + btoa('sk_4760ff211613450e956d470dfa544929' + ':')
     },
-    body: JSON.stringify({
-      "card_number": paymentInfo.card_number,
-      "holder_name": paymentInfo.name_on_card,
-      "expiration_year": paymentInfo.expiration_year,
-      "expiration_month": paymentInfo.expiration_month,
-      "cvv2": paymentInfo.security_code,
-      "address": {
-        "city": shippingInfo.city,
-        "country_code": "MX",
-        "postal_code": shippingInfo.zip_code,
-        "line1": shippingInfo.address,
-        "line2": "",
-        "line3": "",
-        "state": ""
-      }
-    })
+    body: JSON.stringify(payload)
   })
   .then(response => {
     if (!response.ok) {
       throw new Error('Failed to call API')
     }
-    console.log(response)
     return response.json()
   })
   .then(data => {
-    console.log(data)
+    const token = data.id
+    fetchPay(token)
   })
   .catch(error => {
     console.error('Error:', error)
@@ -101,6 +92,7 @@ const callPayApi = () => {
 
 const nextButton = computed(() => currentStep.value === 3 ? 'Pay' : 'Next')
 </script>
+
 
 <style scoped>
 .forms-wrapper {
