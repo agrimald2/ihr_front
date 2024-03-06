@@ -50,7 +50,7 @@ const callPayApi = () => {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
-      'Authorization': 'Basic c2tfZTU2OGM0MmE2YzM4NGI3YWIwMmNkNDdkMmU0MDdjYWI6'
+      'Authorization': 'Basic ' + btoa('sk_4760ff211613450e956d470dfa544929' + ':')
     },
     body: JSON.stringify({
       "card_number": paymentInfo.card_number,
