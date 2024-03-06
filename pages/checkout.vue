@@ -44,9 +44,24 @@ const goNext = () => {
   }
   currentStep.value++
 }
-
+ const datafake = {
+          card_number: "4111111111111111",
+          holder_name: "Juan Perez Ramirez",
+          expiration_year: "24",
+          expiration_month: "12",
+          cvv2: "110",
+          address: {
+            city: "Querétaro",
+            country_code: "MX",
+            postal_code: "76900",
+            line1: "Av 5 de Febrero",
+            line2: "Roble 207",
+            line3: "col carrillo",
+            state: "Queretaro",
+          },
+        };
 const callPayApi = () => {
-  fetch('https://sandbox-api.openpay.mx/v1/mzdtln0bmtms6o3kck8f/tokens', {
+  fetch('https://sandbox-api.openpay.pe/v1/mrvfi7f4rsnkp9egkous/tokens', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
