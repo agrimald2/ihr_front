@@ -19,6 +19,11 @@
 
 <script setup>
 import { SfButton } from '@storefront-ui/vue'
+import { useCheckoutStore } from '~/store/checkout'
+
+const shippingInfo = useCheckoutStore().shippingInfo
+const paymentInfo = useCheckoutStore().paymentInfo
+const cartInfo = useCheckoutStore().cartInfo
 
 const currentStep = ref(1)
 const steps = [
@@ -33,8 +38,50 @@ const goPrevious = () => {
 }
 
 const goNext = () => {
-  if (currentStep.value === 3) return
+  if (currentStep.value === 3) {
+    callPayApi()
+    return
+  }
   currentStep.value++
+}
+
+const callPayApi = () => {
+  fetch('https://sandbox-api.openpay.mx/v1/mzdtln0bmtms6o3kck8f/tokens', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': 'Basic c2tfZTU2OGM0MmE2YzM4NGI3YWIwMmNkNDdkMmU0MDdjYWI6'
+    },
+    body: JSON.stringify({
+      "card_number": paymentInfo.card_number,
+      "holder_name": paymentInfo.name_on_card,
+      "expiration_year": paymentInfo.expiration_year,
+      "expiration_month": paymentInfo.expiration_month,
+      "cvv2": paymentInfo.security_code,
+      "address": {
+        "city": shippingInfo.city,
+        "country_code": "MX",
+        "postal_code": shippingInfo.zip_code,
+        "line1": shippingInfo.address,
+        "line2": "",
+        "line3": "",
+        "state": ""
+      }
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to call API')
+    }
+    console.log(response)
+    return response.json()
+  })
+  .then(data => {
+    console.log(data)
+  })
+  .catch(error => {
+    console.error('Error:', error)
+  })
 }
 
 const nextButton = computed(() => currentStep.value === 3 ? 'Pay' : 'Next')

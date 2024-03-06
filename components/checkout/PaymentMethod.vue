@@ -50,7 +50,7 @@ const securityCode = ref('')
 
 const paymentInfo = [nameOnCard, cardNumber, expiracyMonth, expiracyYear, securityCode]
 
-const paymentKeys = ['nameOnCard', 'cardNumber', 'expiracyMonth', 'expiracyYear', 'securityCode']
+const paymentKeys = ['name_on_card', 'card_number', 'expiracy_month', 'expiracy_year', 'security_code']
 
 watch(paymentInfo, (value: any) => {
   const data = {}
