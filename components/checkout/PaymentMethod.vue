@@ -23,12 +23,12 @@
         <input v-model="cardNumber" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="cardNumber" type="text" placeholder="Numero de la tarjeta">
       </div>
       <div class="grid-cols-1 flex-col flex w-auto">
-        <label class="typography-text-sm font-medium">Expiracy Month</label>
-        <input v-model="expiracyMonth" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="expiracyMonth" type="text" placeholder="Mes de expiración">
+        <label class="typography-text-sm font-medium">Expiration Month</label>
+        <input v-model="expirationMonth" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="expiracyMonth" type="text" placeholder="Mes de expiración">
       </div>
       <div class="grid-cols-1 flex-col flex w-auto">
-        <label class="typography-text-sm font-medium">Expiracy Year</label>
-        <input v-model="expiracyYear" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="expiracyYear" type="text" placeholder="Año de expiración" name="expiracyYear" required />
+        <label class="typography-text-sm font-medium">Expiration Year</label>
+        <input v-model="expirationYear" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="expiracyYear" type="text" placeholder="Año de expiración" name="expiracyYear" required />
       </div>
       <div class="grid-cols-1 flex-col flex w-auto">
         <label class="typography-text-sm font-medium">Security Code</label>
@@ -44,13 +44,13 @@ import { useCheckoutStore } from '~/store/checkout'
 
 const nameOnCard = ref('')
 const cardNumber = ref('')
-const expiracyMonth = ref('')
-const expiracyYear = ref('')
+const expirationMonth = ref('')
+const expirationYear = ref('')
 const securityCode = ref('')
 
-const paymentInfo = [nameOnCard, cardNumber, expiracyMonth, expiracyYear, securityCode]
+const paymentInfo = [nameOnCard, cardNumber, expirationMonth, expirationYear, securityCode]
 
-const paymentKeys = ['name_on_card', 'card_number', 'expiracy_month', 'expiracy_year', 'security_code']
+const paymentKeys = ['name_on_card', 'card_number', 'expiration_month', 'expiration_year', 'security_code']
 
 watch(paymentInfo, (value: any) => {
   const data = {}
