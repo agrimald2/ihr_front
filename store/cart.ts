@@ -14,12 +14,15 @@ export const useCartStore = defineStore('cart', () => {
     localStorage.setItem('cartProducts', JSON.stringify(products.value))
   }
 
-  const addToCart = (product: any) => {
+  const addToCart = (product: any, quantity: number) => {
     const ids = products.value.map((p) => p.id)
-    if (ids.includes(product.id)) return
-    products.value.push(product)
+    if (ids.includes(product.id)) {
+      const existingProductIndex = products.value.findIndex((p) => p.id === product.id)
+      products.value[existingProductIndex].quantity += quantity
+    } else {
+      products.value.push({ ...product, count: quantity})
+    }
     saveProductsToLocalStorage()
-    console.log('added to cart')
     useEmitter().emit('added-to-cart')
   }
 
