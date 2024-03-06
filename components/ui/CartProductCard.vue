@@ -6,8 +6,8 @@
       <SfLink href="#">
         <img
           class="w-full h-auto border rounded-md border-neutral-200"
-          src="https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/smartwatch.png"
-          alt="Smartwatch Fitness Tracker"
+          :src="props.product.images ? props.product.images[0] : ''"
+          alt="Product Image"
           width="176"
           height="176"
         />
@@ -25,7 +25,7 @@
         variant="secondary"
         class="no-underline typography-text-sm sm:typography-text-lg"
       >
-       {{ item.name }}
+       {{ props.product.name }}
       </SfLink>
       <div class="my-2 sm:mb-0">
         <ul
@@ -33,21 +33,21 @@
         >
           <li>
             <span class="mr-1">Size:</span>
-            <span class="font-medium"> {{ item.size }}</span>
+            <span class="font-medium"> {{ props.product.size }}</span>
           </li>
           <li>
             <span class="mr-1">Color:</span>
-            <span class="font-medium">{{ item.color }}</span>
+            <span class="font-medium">{{ props.product.color }}</span>
           </li>
         </ul>
       </div>
-      <div class="items-center sm:mt-auto sm:flex">
+      <div class="props.products-center sm:mt-auto sm:flex">
         <span
           class="font-bold sm:ml-auto sm:order-1 typography-text-sm sm:typography-text-lg"
           >
-          {{  item.price }}
+          {{  props.product.price }}
         </span>
-        <div class="flex items-center justify-between mt-4 sm:mt-0">
+        <div class="flex props.products-center justify-between mt-4 sm:mt-0">
           <div class="flex border border-neutral-300 rounded-md">
             <SfButton
               variant="tertiary"
@@ -62,7 +62,7 @@
             </SfButton>
             <input
               :id="inputId"
-              v-model="count"
+              v-model="props.product.quantity"
               type="number"
               class="appearance-none mx-2 w-8 text-center bg-transparent font-medium [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:display-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-outer-spin-button]:display-none [&::-webkit-outer-spin-button]:m-0 [-moz-appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none disabled:placeholder-disabled-900 focus-visible:outline focus-visible:outline-offset focus-visible:rounded-sm"
               :min="min"
@@ -110,7 +110,7 @@ import { clamp } from '@storefront-ui/shared'
 import { useCounter } from '@vueuse/core'
 
 const props = defineProps({
-  item: { type: Object, default: {} }
+  product: { type: Object, default: {} }
 })
 const min = ref(1)
 const max = ref(10)

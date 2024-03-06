@@ -13,10 +13,5 @@ defineProps({
     default: []
   }
 })
-
-const goToProduct = function (id: string) {
-  navigateTo(`/products/${id}`)
-  console.log('event sent')
-}
 </script>
 

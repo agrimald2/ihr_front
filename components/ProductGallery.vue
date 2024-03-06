@@ -23,7 +23,7 @@
         </SfButton>
       </template>
       <button
-        v-for="({ imageThumbSrc, alt }, index) in images"
+        v-for="({ imageThumbSrc, alt }, index) in props.images"
         :key="`${alt}-${index}-thumbnail`"
         :ref="(el) => assignRef(el, index)"
         type="button"
@@ -68,7 +68,7 @@
       @on-drag-end="onDragged"
     >
       <div
-        v-for="({ imageSrc, alt }, index) in images"
+        v-for="({ imageSrc, alt }, index) in props.images"
         :key="`${alt}-${index}`"
         class="flex justify-center h-full basis-full shrink-0 grow snap-center"
       >
@@ -95,6 +95,13 @@ import {
 } from '@storefront-ui/vue'
 import { unrefElement, useIntersectionObserver } from '@vueuse/core'
 import { watch, type ComponentPublicInstance } from 'vue'
+
+const props = defineProps({
+  images: {
+    type: Array,
+    required: true,
+  }
+})
 
 const withBase = (filepath: string) =>
   `https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/gallery/${filepath}`

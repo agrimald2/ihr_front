@@ -59,6 +59,7 @@ import {
   SfButton,
   SfIconShoppingCart,
 } from '@storefront-ui/vue'
+
 const props = defineProps({
   product: {
     type: Object,
