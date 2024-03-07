@@ -105,7 +105,6 @@ const billingReactive = [
   street,
   city,
   country,
-  isBillingSameShipping,
   zipCode
 ]
 
@@ -116,7 +115,6 @@ const billindKeys = [
   'street',
   'city',
   'country',
-  'is_billing_same_shipping',
   'zip_code'
 ]
 

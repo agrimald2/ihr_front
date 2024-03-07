@@ -30,14 +30,20 @@ export const useCartStore = defineStore('cart', () => {
   const removeFromCart = (index: number) => {
     products.value.splice(index, 1)
     saveProductsToLocalStorage()
-    // Add any additional logic here
   }
 
   const cartInfo = computed(() => {
     return products.value.map((p) => ({
       product_id: p.id,
-      quantity: p.quantity
+      quantity: p.quantity,
+      price: parseInt(p.price),
+      subtotal: Math.ceil(p.quantity * p.price * 100) / 100,
     }))
+  })
+
+  const cartTotal = computed(() => {
+    const subtotal = (acc, product) => acc + product.quantity * product.price
+    return products.value.reduce(subtotal, 0)
   })
 
   const productCount = computed(() => products.value.length)
@@ -47,6 +53,7 @@ export const useCartStore = defineStore('cart', () => {
     productCount,
     addToCart,
     removeFromCart,
-    cartInfo
+    cartInfo,
+    cartTotal
   }
 })

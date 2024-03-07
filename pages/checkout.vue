@@ -22,9 +22,6 @@ import { SfButton } from '@storefront-ui/vue'
 import { useCheckoutStore } from '~/store/checkout'
 import { useCartStore } from '~~/store/cart'
 
-const shippingInfo = useCheckoutStore().shippingInfo
-const cartInfo = useCheckoutStore().cartInfo
-
 const currentStep = ref(1)
 const steps = [
   'Shipping',
@@ -48,12 +45,18 @@ const goNext = () => {
 const BASE_URL = 'https://thr-backend.camionerosperuanos.org/api/'
 const fetchPay = (token) => {
   const cartInfo = useCartStore().cartInfo
+  const cartTotal = useCartStore().cartTotal
+  const shippingInfo = useCheckoutStore().shippingInfo
+  const method = useCheckoutStore().paymentMethod
   fetch(`${BASE_URL}sale`, {
     method: 'POST',
     body: JSON.stringify({
       "token_id": token,
       "cart_info": cartInfo,
-      "method": 0
+      "method": method,
+      "billing_info": shippingInfo,
+      "shipping_info": shippingInfo,
+      "cart_total": cartTotal
     })
   })
 }

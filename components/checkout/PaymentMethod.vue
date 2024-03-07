@@ -1,7 +1,7 @@
 <template>
   <div class="p-4 my-4 max-w-xl">
     <fieldset>
-      <div class="grid grid-cols-2 gap-4 items-stretch my-16">
+      <div class="grid grid-cols-2 gap-4 items-stretch mt-8">
         <label v-for="{ label, value, logo, active } in paymentMethods" :key="value" class="relative">
           <input type="radio" class="peer sr-only" :disabled="!active" />
           <div
@@ -13,6 +13,20 @@
         </label>
       </div>
     </fieldset>
+    <section class="my-4 flex flex-col gap-8">
+      <label class="flex items-center">
+        <SfSwitch v-model="checkOpenPay" value="value" />
+        <span class="ml-[10px] cursor-pointer">
+          <img src="/images/openpay.png" alt="Openpay" width="125px">
+        </span>
+      </label>
+      <label class="flex items-center">
+        <SfSwitch v-model="checkMercado" value="value" />
+        <span class="ml-[10px] cursor-pointer">
+          <img src="/images/mercadopago.png" alt="Openpay" width="125px">
+        </span>
+      </label>
+    </section>
     <form>
       <div class="grid grid-cols-6 gap-3">
         <div class="col-span-6 sm:col-span-6">
@@ -47,6 +61,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
+import { SfSwitch } from '@storefront-ui/vue'
 import { useCheckoutStore } from '~/store/checkout'
 
 const nameOnCard = ref('')
@@ -54,9 +69,11 @@ const cardNumber = ref('')
 const expirationMonth = ref('')
 const expirationYear = ref('')
 const securityCode = ref('')
+const checkOpenPay = ref(true)
+const checkMercado = ref(false)
+
 
 const paymentInfo = [nameOnCard, cardNumber, expirationMonth, expirationYear, securityCode]
-
 const paymentKeys = ['name_on_card', 'card_number', 'expiration_month', 'expiration_year', 'security_code']
 
 watch(paymentInfo, (value: any) => {
@@ -67,6 +84,16 @@ watch(paymentInfo, (value: any) => {
   data['payment_method'] = 0
   // TODO: add correct methods and set code for each of them
   useCheckoutStore().updatePaymentInfo(data)
+})
+
+watch(checkMercado, (value) => {
+  checkOpenPay.value = !value
+  value ? useCheckoutStore().updatePaymentMethod(1) : useCheckoutStore().updatePaymentMethod(0)
+})
+
+watch(checkOpenPay, (value) => {
+  checkMercado.value = !value
+  value ? useCheckoutStore().updatePaymentMethod(0) : useCheckoutStore().updatePaymentMethod(1)
 })
 
 // List of payment methods
