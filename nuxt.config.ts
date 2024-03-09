@@ -17,4 +17,9 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./stores/**', './custom-folder/stores/**'],
   },
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.BASE_URL,
+    }
+  }
 })

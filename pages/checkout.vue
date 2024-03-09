@@ -22,6 +22,7 @@ import { SfButton } from '@storefront-ui/vue'
 import { useCheckoutStore } from '~/store/checkout'
 import { useCartStore } from '~~/store/cart'
 
+const { baseUrl } = useRuntimeConfig()
 const currentStep = ref(1)
 const steps = [
   'Shipping',
@@ -42,13 +43,12 @@ const goNext = () => {
   currentStep.value++
 }
 
-const BASE_URL = 'https://thr-backend.camionerosperuanos.org/api/'
 const fetchPay = (token) => {
   const cartInfo = useCartStore().cartInfo
   const cartTotal = useCartStore().cartTotal
   const shippingInfo = useCheckoutStore().shippingInfo
   const method = useCheckoutStore().paymentMethod
-  fetch(`${BASE_URL}sale`, {
+  fetch(`${baseUrl}sale`, {
     method: 'POST',
     body: JSON.stringify({
       "token_id": token,
