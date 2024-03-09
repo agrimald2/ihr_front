@@ -1,13 +1,13 @@
 <template>
   <div class="flex">
     <Filters />
-    <NarrowContainer class="w-3/4">
+    <NarrowContainer class="w-3/4 mt-4">
       <div class="mb-20 lg:px-0" data-testid="category-layout">
-        <h1
+        <!-- <h1
           class="my-10 font-bold typography-headline-3 md:typography-headline-2"
         >
           Resultados de {{ route.query.name }}
-        </h1>
+        </h1> -->
         <div class="md:flex gap-6" data-testid="category-page-content">
           <section
             v-if="productsFound"
@@ -17,7 +17,7 @@
             <SharedCard
               v-for="product in productsFound"
               :key="product.id"
-              :product="product"
+              :item="product"
             />
           </section>
           <section v-else>
