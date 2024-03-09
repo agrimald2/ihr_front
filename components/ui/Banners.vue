@@ -1,7 +1,7 @@
 <template>
-  <div class="relative w-full flex flex-col gap-1 overflow-hidden min-h-[55vh]">
+  <div class="relative w-full flex flex-col gap-1 overflow-hidden min-h-[30vh]">
     <SfScrollable
-      class="w-full h-full snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] min-h-[55vh]"
+      class="w-full h-full snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] min-h-[30vh]"
       buttons-placement="none"
       drag
     >
