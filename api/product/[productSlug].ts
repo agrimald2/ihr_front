@@ -1,4 +1,5 @@
-const { baseUrl } = useRuntimeConfig()
+// const { baseUrl } = useRuntimeConfig()
+const baseUrl = 'https://thr-backend.camionerosperuanos.org/api/'
 
 import { objQueryToString } from "../utlis"
 

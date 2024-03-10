@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div class="flex flex-col min-h-screen bg-primary-100">
     <!-- Header Component -->
     <Header />
     <!-- Page Content -->
-    <NuxtPage />
+    <div class="flex-grow">
+      <NuxtPage />
+    </div>
 
     <!-- Footer Component -->
     <Footer />

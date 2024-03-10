@@ -22,7 +22,8 @@ import { SfButton } from '@storefront-ui/vue'
 import { useCheckoutStore } from '~/store/checkout'
 import { useCartStore } from '~~/store/cart'
 
-const { baseUrl } = useRuntimeConfig()
+// const { baseUrl } = useRuntimeConfig()
+const baseUrl = 'https://thr-backend.camionerosperuanos.org/api/'
 const currentStep = ref(1)
 const steps = [
   'Shipping',
