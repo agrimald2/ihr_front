@@ -114,7 +114,7 @@
             </li>
           </ul>
         </nav>
-        <div class="flex flex-row w-full">
+        <div class="flex flex-row w-full justify-center">
           <div class="left-40">
             <SfButton
               class="hidden md:flex bg-primary-500 font-body bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
@@ -132,9 +132,20 @@
               >
             </SfButton>
           </div>
-          <div class="w-full ml-80 mr-10 max-w-[600px]">
+          <div v-if="isMobile && route.path !== '/'" class="w-full mr-16">
+            <form class="" @submit.prevent="search">   
+              <div class="relative">
+                <div class="absolute inset-y-0 end-1 flex items-center pointer-events-none">
+                  <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                  </svg>
+                </div>
+                <input v-model="inputValue" type="search" class="block w-full m-2 p-3 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search" required />
+              </div>
+            </form>
+          </div>
+          <div v-if="!isMobile" class="w-full mr-10 max-w-[600px]">
             <form
-              v-if="!isMobile"
               role="search"
               class="hidden md:flex flex-[100%] mt-2 md:mt-0 md:ml-10 pb-2 md:pb-0"
               @submit.prevent="search"
