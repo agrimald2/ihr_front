@@ -1,26 +1,12 @@
 <template>
   <div class="w-full h-full">
-    <div
-      v-if="isOpen"
-      class="fixed w-screen h-screen inset-0 bg-neutral-500 bg-opacity-50 transition-opacity"
-    />
     <header
       ref="menuRef"
-      class="flex flex-wrap md:flex-nowrap w-full py-2 md:py-5 border-0 bg-primary-700 border-neutral-200 md:relative md:h-20 md:z-10"
+      class="flex flex-wrap md:flex-nowrap w-full py-2 md:py-5 border-6 border- border-neutral-200 md:relative md:h-20 md:z-10"
     >
       <div
-        class="flex items-center justify-start h-full max-w-[1536px] w-full px-4 md:px-10"
+        class="flex items-center justify-start h-full max-w-auto w-full px-4 md:px-10"
       >
-        <SfButton
-          class="block md:hidden text-white font-body bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
-          :aria-haspopup="true"
-          :aria-expanded="isOpen"
-          variant="tertiary"
-          square
-          @click="toggle()"
-        >
-          <SfIconMenu class="text-white" />
-        </SfButton>
         <a
           href="/"
           aria-label="SF Homepage"
@@ -28,7 +14,7 @@
         >
           <picture>
             <source
-              srcset="/images/HHlogo.png"
+              srcset="/images/find_logo.png"
             />
             <img
               alt="Sf Logo"
@@ -36,21 +22,6 @@
             />
           </picture>
         </a>
-        <SfButton
-          class="hidden md:flex text-white font-body bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
-          :aria-haspopup="true"
-          :aria-expanded="isOpen"
-          variant="tertiary"
-          square
-          @click="categoryDropDownToggle"
-        >
-          <template #suffix>
-            <SfIconExpandMore class="hidden md:inline-flex" />
-          </template>
-          <span class="hidden md:inline-flex whitespace-nowrap px-2"
-            >Categories</span
-          >
-        </SfButton>
         <nav>
           <ul>
             <li role="none">
@@ -143,158 +114,62 @@
             </li>
           </ul>
         </nav>
-        <form
-          role="search"
-          class="hidden md:flex flex-[100%] mt-2 md:mt-0 md:ml-10 pb-2 md:pb-0"
-          @submit.prevent="search"
-        >
-          <SfInput
-            v-model="inputValue"
-            type="search"
-            class="[&::-webkit-search-cancel-button]:appearance-none"
-            placeholder="Search"
-            wrapper-class="flex-1 h-10 pr-0"
-            size="base"
-          >
-            <template #suffix>
-              <span class="flex items-center">
-                <SfButton
-                  variant="tertiary"
-                  square
-                  aria-label="search"
-                  type="submit"
-                  class="rounded-l-none hover:bg-transparent active:bg-transparent"
-                >
-                  <SfIconSearch />
-                </SfButton>
-              </span>
-            </template>
-          </SfInput>
-        </form>
-        <!-- <nav
-          class="flex flex-nowrap justify-end items-center md:ml-10 gap-x-1"
-          aria-label="SF Navigation"
-        >
-          <div>
-            {{ cartBadge }}
-          </div>
-          <SfButton
-            v-for="actionItem in actionItems"
-            :key="actionItem.ariaLabel"
-            class="text-white bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
-            :aria-label="actionItem.ariaLabel"
-            variant="tertiary"
-            square
-            @click="cartDropDownToggle"
-          >
-            <template #prefix>
-              <Component :is="actionItem.icon" />
-            </template>
-            <span
-              v-if="actionItem.role === 'login'"
-              class="hidden lg:inline-flex whitespace-nowrap pr-2"
-              >{{ actionItem.label }}</span
+        <div class="flex flex-row w-full">
+          <div class="left-40">
+            <SfButton
+              class="hidden md:flex bg-primary-500 font-body bg-transparent hover:bg-primary-800 hover:text-white active:bg-primary-900 active:text-white"
+              :aria-haspopup="true"
+              :aria-expanded="isOpen"
+              variant="tertiary"
+              square
+              @click="categoryDropDownToggle"
             >
-            <transition
-              v-if="actionItem.role === 'cart'"
-              enter-active-class="transform transition duration-500 ease-in-out"
-              leave-active-class="transform transition duration-500 ease-in-out"
-              :enter-from-class="
-                placement === 'right' ? '-translate-x-full' : 'translate-x-full'
-              "
-              :enter-to-class="
-                placement === 'right' ? 'translate-x-0' : 'translate-x-0'
-              "
-              :leave-from-class="
-                placement === 'right' ? 'translate-x-0' : 'translate-x-0'
-              "
-              :leave-to-class="
-                placement === 'right' ? '-translate-x-full' : 'translate-x-full'
-              "
-            >
-              <SfDrawer
-                ref="cartRef"
-                v-model="isCartDrownOpen"
-                :placement="placement"
-                :class="[
-                  'bg-neutral-50',
-                  'border',
-                  'border-gray-300',
-                  {
-                    'max-w-[370px]':
-                      placement === 'left' || placement === 'right',
-                  },
-                ]"
+              <template #suffix>
+                <SfIconExpandMore class="hidden md:inline-flex" />
+              </template>
+              <span class="hidden md:inline-flex whitespace-nowrap px-2"
+                >Categories</span
               >
-                <header
-                  class="flex items-center justify-between px-10 py-6 bg-primary-700"
-                >
-                  <div class="flex items-center text-white">
-                    <SfIconFavorite class="mr-2" /> Your favorite items
-                  </div>
-                  <SfButton
-                    square
-                    variant="tertiary"
-                    class="text-white"
-                    @click="cartModalClose"
-                  >
-                    <SfIconClose />
-                  </SfButton>
-                </header>
-                <div class="p-5 px-10">
-                  <p class="mb-2">
-                    Focus is trapped inside this Drawer and
-                    <strong>tab</strong> button cycle through
-                    <a href="#" class="underline text-primary-700">
-                      Focusable Element
-                    </a>
-                    and another
-                    <a href="#" class="underline text-primary-700">
-                      Focusable Element
-                    </a>
-                  </p>
-                  <strong
-                    >You can close Drawer by clicking outside or focus and use
-                    ESC button</strong
-                  >
-                </div>
-              </SfDrawer>
-            </transition>
-          </SfButton>
-        </nav> -->
-        <SfButton class="relative ml-10" square @click="navigateTo('/cart')">
+            </SfButton>
+          </div>
+          <div class="w-full ml-80 mr-10 max-w-[600px]">
+            <form
+              v-if="!isMobile"
+              role="search"
+              class="hidden md:flex flex-[100%] mt-2 md:mt-0 md:ml-10 pb-2 md:pb-0"
+              @submit.prevent="search"
+            >
+              <SfInput
+                v-if="!isMobile"
+                v-model="inputValue"
+                type="search"
+                class="[&::-webkit-search-cancel-button]:appearance-none max-w-[520px]"
+                placeholder="Search"
+                wrapper-class="flex-1 h-10 pr-0"
+                size="base"
+              >
+                <template #suffix>
+                  <span class="flex items-center">
+                    <SfButton
+                      variant="tertiary"
+                      square
+                      aria-label="search"
+                      type="submit"
+                      class="rounded-l-none hover:bg-transparent active:bg-transparent"
+                    >
+                      <SfIconSearch />
+                    </SfButton>
+                  </span>
+                </template>
+              </SfInput>
+            </form>
+          </div>
+        </div>
+        <SfButton class="absolute right-6 ml-10" square @click="navigateTo('/cart')">
           <SfIconShoppingCart />
           <SfBadge :content="cartBadge" />
         </SfButton>
       </div>
-      <form
-        role="search"
-        class="flex md:hidden flex-[100%] my-2 mx-4"
-        @submit.prevent="search"
-      >
-        <SfInput
-          v-model="inputValue"
-          type="search"
-          class="[&::-webkit-search-cancel-button]:appearance-none"
-          placeholder="Search"
-          wrapper-class="flex-1 h-10 pr-0"
-          size="base"
-        >
-          <template #suffix>
-            <span class="flex items-center">
-              <SfButton
-                variant="tertiary"
-                square
-                aria-label="search"
-                type="submit"
-                class="rounded-l-none hover:bg-transparent active:bg-transparent"
-              >
-                <SfIconSearch />
-              </SfButton>
-            </span>
-          </template>
-        </SfInput>
-      </form>
     </header>
   </div>
 </template>
@@ -303,7 +178,6 @@ import {
   SfButton,
   SfDrawer,
   SfIconShoppingCart,
-  SfIconFavorite,
   SfIconPerson,
   SfIconClose,
   SfIconExpandMore,
@@ -320,16 +194,14 @@ import { onClickOutside } from '@vueuse/core'
 import { useEmitter } from '~~/composables/useEmitter'
 import { useCartStore } from '~/store/cart'
 import { useSharedMap } from '~/composables/filter';
+
 const {
   isOpen: isCategoryDropDownOpen,
   toggle: categoryDropDownToggle,
   close: categoriesModalClose,
-} = useDisclosure()
-const {
   isOpen: isCartDrownOpen,
-  toggle: cartDropDownToggle,
-  close: cartModalClose,
 } = useDisclosure()
+
 const menuRef = ref()
 const drawerRef = ref()
 const cartRef = ref()
@@ -347,6 +219,10 @@ useTrapFocus(drawerRef, {
 })
 onClickOutside(menuRef, () => {
   close()
+})
+
+const isMobile = computed(() => {
+  return window.innerWidth <= 768
 })
 
 const inputValue = ref('')
@@ -485,3 +361,8 @@ const categoriesContent = [
   },
 ]
 </script>
+<style scoped>
+.cart {
+  padding: 0px !important;
+}
+</style>

@@ -40,11 +40,13 @@
       </div>
     </div>
   </div>
-  <div v-if="isMobile" class="text-center">
-    {{ item.name }}
-  </div>
-  <div v-if="isMobile" class="text-center">
-    {{ item.description }}
+  <div v-if="isMobile">
+    <div class="text-center line-clamp-3">
+      {{ item.name }}
+    </div>
+    <div class="text-center">
+      {{ item.description }}
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -58,5 +60,4 @@ defineProps({
 const isMobile = computed(() => {
   return window.innerWidth <= 768
 })
-
 </script>

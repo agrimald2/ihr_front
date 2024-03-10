@@ -1,8 +1,8 @@
 <template>
   <section
-    class="w-full flex flex-wrap justify-center gap-y-8 gap-x-8 mt-5 mb-5 px-10"
+    class="w-full flex flex-wrap justify-center gap-y-8 gap-x-8 mt-5 mb-5"
   >
-    <h1 class="text-3xl">Search in our categories</h1>
+    <h1 class="text-3xl">Our most searched categories</h1>
     <CardCarrousel :items="items"/>
   </section>
 </template>

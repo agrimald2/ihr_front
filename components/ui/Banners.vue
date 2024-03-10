@@ -26,7 +26,7 @@ import { SfButton, SfScrollable } from '@storefront-ui/vue'
 const banners = [
   {
     image:
-      'https://http2.mlstatic.com/D_NQ_647409-MLA74796335999_022024-OO.webp',
+      'https://http2.mlstatic.com/D_NQ_801538-MLA74908908313_032024-OO.webp',
     title: 'Feel the music',
     label: 'New Wireless Pro',
     ariaLabel:
