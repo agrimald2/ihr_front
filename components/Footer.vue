@@ -29,7 +29,7 @@
       </ul>
     </div>
     <hr />
-    <div class="py-10 md:flex md:mx-auto max-w-[1536px]">
+    <div class="py-10 md:flex md:mx-auto max-w-full">
       <div
         v-for="{ label, icon, link, details } in contactOptions"
         :key="label"
@@ -55,7 +55,7 @@
       </div>
     </div>
     <div
-      class="bg-neutral-900 justify-end px-4 py-10 md:flex md:py-6 max-w-[1536px] mx-auto"
+      class="bg-neutral-900 justify-end px-4 py-10 md:flex md:py-6 max-w-full mx-auto"
     >
       <div class="flex justify-center py-2 gap-x-4 md:self-start">
         <SfButton
@@ -87,7 +87,7 @@
       <p
         class="flex items-center justify-center py-2 leading-5 text-center typography-text-sm text-white/50 font-body md:ml-6"
       >
-        @2023 Vue Storefront
+        @2023 Glad you came up to here
       </p>
     </div>
   </footer>

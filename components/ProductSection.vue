@@ -1,6 +1,6 @@
 <template>
   <section
-    class="w-full flex flex-wrap justify-center gap-y-8 gap-x-8 mt-5 mb-5 px-10"
+    class="w-full flex flex-wrap justify-center max-w-full gap-5 md:gap-8 mt-5 mb-5"
   >
     <div v-for="item in items" :key="item.id" @click="goToProduct(item.id)">
       <SharedCard :item="item"/>
