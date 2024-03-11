@@ -1,5 +1,5 @@
-const { baseUrl } = useRuntimeConfig()
-// const baseUrl = 'https://thr-backend.camionerosperuanos.org/api/'
+// const { baseUrl } = useRuntimeConfig()
+const baseUrl = 'https://thr-backend.camionerosperuanos.org/api/'
 const image_urls = [
   'https://i.pinimg.com/474x/df/73/59/df7359c1ad8148f823e78532733d8299.jpg',
   'https://i.pinimg.com/474x/98/30/63/983063981b5eeef9e2d458f13268f453.jpg',
