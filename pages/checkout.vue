@@ -49,7 +49,7 @@ const fetchPay = (token) => {
   const cartTotal = useCartStore().cartTotal
   const shippingInfo = useCheckoutStore().shippingInfo
   const method = useCheckoutStore().paymentMethod
-  fetch(`${baseUrl}sale`, {
+  fetch(`${baseUrl}sale/`, {
     method: 'POST',
     body: JSON.stringify({
       "token_id": token,
