@@ -27,9 +27,28 @@ export const useCartStore = defineStore('cart', () => {
     useEmitter().emit('added-to-cart')
   }
 
-  const removeFromCart = (index: number) => {
-    products.value.splice(index, 1)
-    saveProductsToLocalStorage()
+  const removeFromCart = (id: string) => {
+    const index = products.value.findIndex((p) => p.id === id)
+    if (index !== -1) {
+      products.value.splice(index, 1)
+      saveProductsToLocalStorage()
+    }
+  }
+
+  const incrementItem = (id: string) => {
+    const product = products.value.find((p) => p.id === id)
+    if (product) {
+      product.quantity++
+      saveProductsToLocalStorage()
+    }
+  }
+
+  const decrementItem = (id: string) => {
+    const product = products.value.find((p) => p.id === id)
+    if (product && product.quantity > 1) {
+      product.quantity--
+      saveProductsToLocalStorage()
+    }
   }
 
   const cartInfo = computed(() => {
@@ -53,6 +72,8 @@ export const useCartStore = defineStore('cart', () => {
     productCount,
     addToCart,
     removeFromCart,
+    incrementItem,
+    decrementItem,
     cartInfo,
     cartTotal
   }

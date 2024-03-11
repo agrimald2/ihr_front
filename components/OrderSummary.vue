@@ -2,32 +2,32 @@
   <div>
     <div class="md:shadow-lg md:rounded-md md:border md:border-neutral-100">
       <div
-        class="flex justify-between items-end bg-neutral-100 md:bg-transparent py-2 px-4 md:px-6 md:pt-6 md:pb-4"
+        class="flex justify-between items-end md:bg-transparent py-2 px-4 md:px-6 md:pt-6 md:pb-4"
       >
         <p class="typography-headline-4 font-bold md:typography-headline-3">
           Order Summary
         </p>
-        <p class="typography-text-base font-medium">
+        <!-- <p class="typography-text-base font-medium">
           (Items: {{ orderDetails.items }})
-        </p>
+        </p> -->
       </div>
       <div class="px-4 pb-4 mt-3 md:px-6 md:pb-6 md:mt-0">
         <div class="flex justify-between typography-text-base pb-4">
           <div class="flex flex-col grow pr-2">
             <p>Items Subtotal</p>
-            <p class="typography-text-xs text-neutral-500">Original Price</p>
-            <p class="typography-text-xs text-secondary-700">Savings</p>
+            <!-- <p class="typography-text-xs text-neutral-500">Original Price</p>
+            <p class="typography-text-xs text-secondary-700">Savings</p> -->
             <p class="my-2">Delivery</p>
             <p>Estimated Sales Tax</p>
           </div>
           <div class="flex flex-col text-right">
-            <p>{{ formatPrice(itemsSubtotal) }}</p>
-            <p class="typography-text-xs text-neutral-500">
+            <p>{{ cartTotal }}</p>
+            <!-- <p class="typography-text-xs text-neutral-500">
               {{ formatPrice(orderDetails.originalPrice) }}
             </p>
             <p class="typography-text-xs text-secondary-700">
               {{ formatPrice(orderDetails.savings) }}
-            </p>
+            </p> -->
             <p class="my-2">{{ formatPrice(orderDetails.delivery) }}</p>
             <p>{{ formatPrice(orderDetails.tax) }}</p>
           </div>
@@ -47,7 +47,7 @@
           <p>{{ formatPrice(promoCode) }}</p>
         </div>
         <form
-          v-else
+          v-if="!props.isCheckoutStep"
           class="flex gap-x-2 py-4 border-y border-neutral-200 mb-4"
           @submit.prevent="checkPromoCode"
         >
@@ -59,16 +59,18 @@
           <SfButton type="submit" variant="secondary">Apply</SfButton>
         </form>
         <p
+          v-if="!props.isCheckoutStep"
           class="px-3 py-1.5 bg-secondary-100 text-secondary-700 typography-text-sm rounded-md text-center mb-4"
         >
-          You are saving ${{ Math.abs(orderDetails.savings).toFixed(2) }} on
+          <!-- You are saving ${{ Math.abs(orderDetails.savings).toFixed(2) }} on -->
+          You are saving delivery and taxes on
           your order today!
         </p>
         <div
           class="flex justify-between typography-headline-4 md:typography-headline-3 font-bold pb-4 mb-4 border-b border-neutral-200"
         >
           <p>Total</p>
-          <p>{{ formatPrice(totalPrice) }}</p>
+          <p>{{ cartTotal }}</p>
         </div>
         <SfButton size="lg" class="w-full" @click="navigateTo('/checkout')"> Place Order And Pay </SfButton>
         <div class="typography-text-sm mt-4 text-center">
@@ -142,6 +144,16 @@ import {
   SfIconClose,
   SfIconCheckCircle,
 } from '@storefront-ui/vue'
+import { useCartStore } from '~/store/cart'
+
+const props = defineProps({
+  isCheckoutStep: {
+    type: Boolean,
+    default: true,
+  },
+})
+
+const cartTotal = useCartStore().cartTotal
 
 const inputValue = ref('')
 const showRemovedCodeAlert = ref(false)
@@ -153,20 +165,10 @@ const orderDetails = {
   originalPrice: 7824.97,
   savings: -787.0,
   delivery: 0.0,
-  tax: 457.47,
+  tax: 0.0,
 }
 
 const promoCode = ref(0)
-
-const itemsSubtotal = computed(
-  () =>
-    orderDetails.originalPrice +
-    orderDetails.savings +
-    orderDetails.delivery +
-    orderDetails.tax,
-)
-
-const totalPrice = computed(() => itemsSubtotal.value + promoCode.value)
 
 const checkPromoCode = () => {
   if (

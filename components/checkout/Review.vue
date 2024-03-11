@@ -1,5 +1,5 @@
 <template>
-  <div class="px-4 max-w-xl">
+  <!-- <div class="px-4 max-w-xl">
     <a class="block max-w-xl p-6 rounded-lg shadow">
       <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Shipping and Payment</h5>
       <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of
@@ -8,7 +8,8 @@
     <div class="mt-4 p-4 rounded-lg shadow-lg bg-blue-100">
       <p class="text-lg font-semibold">Powered by {{ paymentGateway }}...</p>
     </div>
-  </div>
+  </div> -->
+  <OrderSummary class="col-span-5 md:sticky md:top-20 h-fit" :is-review-step="false" />
 </template>
 
 <script lang="ts" setup>

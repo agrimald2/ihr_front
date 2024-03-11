@@ -12,12 +12,12 @@
           height="176"
         />
       </SfLink>
-      <div
+      <!-- <div
         class="absolute top-0 left-0 text-white bg-secondary-600 py-1 pl-1.5 pr-2 typography-text-xs font-medium"
       >
         <SfIconSell size="xs" class="mr-1" />
         Sale
-      </div>
+      </div> -->
     </div>
     <div class="flex flex-col pl-4 min-w-[180px] flex-1">
       <SfLink
@@ -33,11 +33,11 @@
         >
           <li>
             <span class="mr-1">Size:</span>
-            <span class="font-medium"> {{ props.product.size }}</span>
+            <span class="font-medium"> L </span>
           </li>
           <li>
             <span class="mr-1">Color:</span>
-            <span class="font-medium">{{ props.product.color }}</span>
+            <span class="font-medium"> Black </span>
           </li>
         </ul>
       </div>
@@ -56,7 +56,7 @@
               class="rounded-r-none"
               :aria-controls="inputId"
               aria-label="Decrease value"
-              @click="dec()"
+              @click="dec(props.product.id)"
             >
               <SfIconRemove />
             </SfButton>
@@ -76,7 +76,7 @@
               class="rounded-l-none"
               :aria-controls="inputId"
               aria-label="Increase value"
-              @click="inc()"
+              @click="inc(props.product.id)"
             >
               <SfIconAdd />
             </SfButton>
@@ -85,6 +85,7 @@
             aria-label="Remove"
             type="button"
             class="text-neutral-500 typography-text-xs font-light ml-auto flex items-center px-3 py-1.5"
+            @click="remove(props.product.id)"
           >
             <SfIconDelete />
             <span class="hidden ml-1.5 sm:block"> Remove </span>
@@ -108,6 +109,7 @@ import {
 } from '@storefront-ui/vue'
 import { clamp } from '@storefront-ui/shared'
 import { useCounter } from '@vueuse/core'
+import { useCartStore } from '~/store/cart'
 
 const props = defineProps({
   product: { type: Object, default: {} }
@@ -115,10 +117,22 @@ const props = defineProps({
 const min = ref(1)
 const max = ref(10)
 const inputId = useId()
-const { count, inc, dec, set } = useCounter(1, {
+const { count, set } = useCounter(1, {
   min: min.value,
   max: max.value,
 })
+const inc = (id: any) => {
+  useCartStore().incrementItem(id)
+}
+
+const dec = (id: any) => {
+  useCartStore().decrementItem(id)
+}
+
+const remove = (id: any) => {
+  useCartStore().removeFromCart(id)
+}
+
 function handleOnChange(event: Event) {
   const currentValue = (event.target as HTMLInputElement)?.value
   const nextValue = parseFloat(currentValue)
