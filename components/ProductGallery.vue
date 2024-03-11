@@ -23,11 +23,11 @@
         </SfButton>
       </template>
       <button
-        v-for="({ imageThumbSrc, alt }, index) in props.images"
+        v-for="(image, index) in props.images"
         :key="`${alt}-${index}-thumbnail`"
         :ref="(el) => assignRef(el, index)"
         type="button"
-        :aria-label="alt"
+        aria-label="product-image"
         :aria-current="activeIndex === index"
         :class="`md:w-[78px] md:h-auto relative shrink-0 pb-1 mx-4 -mb-2 border-b-4 snap-start cursor-pointer focus-visible:outline focus-visible:outline-offset transition-colors flex-grow md:flex-grow-0  ${
           activeIndex === index ? 'border-primary-700' : 'border-transparent'
@@ -36,11 +36,11 @@
         @focus="activeIndex = index"
       >
         <img
-          :alt="alt"
+          alt="product-image"
           class="border border-neutral-200"
           width="78"
           height="78"
-          :src="imageThumbSrc"
+          :src="image"
         />
       </button>
       <template #nextButton="defaultProps">
@@ -68,16 +68,16 @@
       @on-drag-end="onDragged"
     >
       <div
-        v-for="({ imageSrc, alt }, index) in props.images"
+        v-for="(image, index) in props.images"
         :key="`${alt}-${index}`"
         class="flex justify-center h-full basis-full shrink-0 grow snap-center"
       >
         <img
-          :aria-label="alt"
+          aria-label="product-image"
           :aria-hidden="activeIndex !== index"
           class="object-cover w-auto h-full"
-          :alt="alt"
-          :src="imageSrc"
+          alt="product-image"
+          :src="image"
         />
       </div>
     </SfScrollable>

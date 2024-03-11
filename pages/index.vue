@@ -45,7 +45,6 @@ const inputValue = ref('')
 
 const search = () => {
   const { sharedMap, convertMapToObject, addFieldToMap } = useSharedMap()
-  console.log('search: ', inputValue.value)
   addFieldToMap(sharedMap, 'name',  inputValue.value);
   const emitter = useEmitter()
   emitter.emit('search-products', convertMapToObject(sharedMap))
@@ -71,7 +70,8 @@ const categories = ref<Category[]>([])
 
 try {
   const productsData = await fetchProducts()
-  products.value = productsData.results
+  // products.value = productsData.results
+  products.value = productsData
   const categoryData = await fetchCategories()
   categories.value = categoryData.results
 } catch (error) {

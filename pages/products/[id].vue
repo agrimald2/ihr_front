@@ -6,16 +6,14 @@
 </template>
 
 <script lang="ts" setup>
-import { fetchProducts } from '~/api/product/[productSlug]'
+import { fetchProducts, getProduct } from '~/api/product/[productSlug]'
 
 const product = ref([])
 const route = useRoute()
 
 onBeforeMount(async () => {
   try {
-    const response = await fetchProducts({ id: route.params.id })
-    const randomNumber = Math.floor(Math.random() * 8)
-    product.value = response.results[randomNumber]
+    product.value = await getProduct(route.params.id)
   } catch (error) {
     console.error('Failed to fetch products:', error)
   }
