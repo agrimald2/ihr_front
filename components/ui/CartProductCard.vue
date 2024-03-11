@@ -51,7 +51,6 @@
           <div class="flex border border-neutral-300 rounded-md">
             <SfButton
               variant="tertiary"
-              :disabled="count <= min"
               square
               class="rounded-r-none"
               :aria-controls="inputId"
@@ -71,7 +70,6 @@
             />
             <SfButton
               variant="tertiary"
-              :disabled="count >= max"
               square
               class="rounded-l-none"
               :aria-controls="inputId"
