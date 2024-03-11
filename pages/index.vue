@@ -38,9 +38,7 @@ import { fetchProducts, fetchCategories } from '~/api/product/[productSlug]'
 import type { Product, Category } from '~/types'
 
 const route = useRoute()
-const isMobile = computed(() => {
-  return window.innerWidth <= 768
-})
+const isMobile = computed(() => window.innerWidth <= 768)
 const inputValue = ref('')
 
 const search = () => {

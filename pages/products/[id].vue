@@ -1,6 +1,14 @@
 <template>
+  <div class="flex justify-center">
+    <SharedCard
+      v-if="isMobile"
+      :item=product
+      :card-height="'h-60'"
+      :card-width="'w-60'"
+    />
+  </div>
   <div class="flex gap-4 p-4">
-    <ProductGallery :images="productImages"/>
+    <ProductGallery v-if="!isMobile" :images="productImages"/>
     <ProductDetails :product="product"/>
   </div>
 </template>
@@ -19,5 +27,6 @@ onBeforeMount(async () => {
   }
 })
 
+const isMobile = computed(() => window.innerWidth <= 768)
 const productImages = computed(() => product.value.images)
 </script>

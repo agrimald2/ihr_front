@@ -1,12 +1,12 @@
 <template>
   <div @click="emitter.emit('goToDetails', item)">
     <div
-      class="w-40 md:w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+      :class="`${cardWidth} md:w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl`"
     >
       <img
         :src="item.images ? item.images[0] : 'https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60'"
         alt="Product"
-        class="h-40 md:h-80 w-40 md:w-72 rounded-t-xl"
+        :class="`${cardHeight} md:h-80 ${cardWidth} md:w-72 rounded-t-xl`"
       />
       <div v-if="!isMobile" class="px-4 py-3 w-72">
         <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
@@ -63,10 +63,16 @@ defineProps({
   isSearch: {
     type: Boolean,
     default: false
+  },
+  cardWidth: {
+    type: String,
+    default: 'w-40'
+  },
+  cardHeight: {
+    type: String,
+    default: 'h-40'
   }
 })
 
-const isMobile = computed(() => {
-  return window.innerWidth <= 768
-})
+const isMobile = computed(() => window.innerWidth <= 768)
 </script>
