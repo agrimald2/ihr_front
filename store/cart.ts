@@ -56,7 +56,7 @@ export const useCartStore = defineStore('cart', () => {
       product_id: p.id,
       quantity: p.quantity,
       price: parseInt(p.price),
-      subtotal: p.quantity && p.price ? Math.ceil(p.quantity * p.price * 100) / 100 : 0,
+      sub_total: p.quantity && p.price ? Math.ceil(p.quantity * p.price * 100) / 100 : 0,
     }))
   })
 
