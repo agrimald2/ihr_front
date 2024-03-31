@@ -112,6 +112,6 @@ const nextButton = computed(() => currentStep.value === 3 ? 'Pay' : 'Next')
 }
 
 .size-two {
-  height: ;
+  height: 400px;
 }
 </style>

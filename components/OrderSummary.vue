@@ -154,7 +154,7 @@ const props = defineProps({
   },
 })
 
-const cartTotal = useCartStore().cartTotal
+const cartTotal = computed(() => useCartStore().cartTotal)
 
 const inputValue = ref('')
 const showRemovedCodeAlert = ref(false)
