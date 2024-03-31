@@ -84,11 +84,9 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useCheckoutStore } from '~/store/checkout'
+import { countryOptions } from '~/utils/countries'
 
-
-// Here you should provide a list of countries you want to support
-// or use an up-to-date country list like: https://www.npmjs.com/package/country-list
-const countries = ['Select country', 'Germany', 'Great Britain', 'Poland', 'United States of America']
+const countries = countryOptions.map((e) => e.value)
 const firstName = ref('')
 const lastName = ref('')
 const phone = ref('')
