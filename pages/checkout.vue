@@ -1,9 +1,9 @@
 <template>
-  <div class="py-12 w-auto">
+  <div class="md:py-12 py-4 w-auto">
     <div class="flex justify-center">
       <SharedStepper :steps="steps" :current-step="currentStep" class="w-auto flex items-center"/>
     </div>
-    <div class="flex justify-center forms-wrapper overflow-auto">
+    <div class="flex justify-center overflow-auto" :class="{ 'size-two': currentStep === 3, 'size-one': currentStep !== 3 }">
       <CheckoutShipping v-show="currentStep === 1" />
       <CheckoutPaymentMethod v-show="currentStep === 2" />
       <CheckoutReview v-show="currentStep === 3" />
@@ -92,6 +92,11 @@ const callPayApi = () => {
     const token = data.id
     fetchPay(token)
   })
+  .then(() => {
+    alert('Payment successful')
+    useCartStore().resetCart()
+    navigateTo('/')
+  })
   .catch(error => {
     console.error('Error:', error)
   })
@@ -102,7 +107,11 @@ const nextButton = computed(() => currentStep.value === 3 ? 'Pay' : 'Next')
 
 
 <style scoped>
-.forms-wrapper {
+.size-one {
   height: 650px;
+}
+
+.size-two {
+  height: ;
 }
 </style>

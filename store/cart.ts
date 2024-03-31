@@ -67,6 +67,11 @@ export const useCartStore = defineStore('cart', () => {
 
   const productCount = computed(() => products.value.length)
 
+  const resetCart = () => {
+    products.value = []
+    saveProductsToLocalStorage()
+  }
+
   return {
     products,
     productCount,
@@ -75,6 +80,7 @@ export const useCartStore = defineStore('cart', () => {
     incrementItem,
     decrementItem,
     cartInfo,
-    cartTotal
+    cartTotal,
+    resetCart,
   }
 })

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 my-4 max-w-xl">
+  <div class="p-4 max-w-xl">
     <fieldset>
       <div class="grid grid-cols-2 gap-4 items-stretch mt-8">
         <label v-for="{ label, value, logo, active } in paymentMethods" :key="value" class="relative">
@@ -108,13 +108,13 @@ const paymentMethods = [
     label: 'Crypto',
     value: 'crypto',
     logo: 'https://pngimg.com/d/bitcoin_PNG12.png',
-    active: true,
+    active: false,
   },
   {
     label: 'ApplePay',
     value: 'applepay',
     logo: 'https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/apple-pay-logo.svg',
-    active: true,
+    active: false,
   },
   {
     label: 'GooglePay',

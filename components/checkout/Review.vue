@@ -9,7 +9,7 @@
       <p class="text-lg font-semibold">Powered by {{ paymentGateway }}...</p>
     </div>
   </div> -->
-  <OrderSummary class="col-span-5 md:sticky md:top-20 h-fit" :is-review-step="false" />
+  <OrderSummary class="col-span-5 md:sticky md:top-20 h-fit md:mt-0 mt-20" :is-checkout-step="true" />
 </template>
 
 <script lang="ts" setup>
